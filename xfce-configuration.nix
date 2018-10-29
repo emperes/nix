@@ -105,9 +105,9 @@
     shell = pkgs.zsh;
     extraGroups = [
       "dialout" "plugdev" "audio" 
-      "video" "disk" 
+      "video" "disk" "libvirtd"
       "networkmanager" "systemd-journal" 
-      "wheel"
+      "wheel" "adb" "power" "vboxusers" 
     ];
     createHome = true;
     home = "/home/obliq";
@@ -155,8 +155,13 @@
     acpid.enable = true;
     tlp.enable = true;
     illum.enable = true;
-    printing.enable = true; # Enable CUPS
+    printing.enable = true; # CUPS
     openssh.enable = true;
+    dbus.enable = true;
+    nixosManual.showManual = true;
+    locate.enable = true;
+    udisks2.enable = true;
+    ntp.enable = true;
   };
   
   time.timeZone = "Europe/Moscow";
