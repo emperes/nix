@@ -18,8 +18,8 @@
   # boot.loader.efi.efiSysMountPoint = "/boot/efi";
   # Define on which hard drive you want to install Grub.
   boot.loader.grub.device = "/dev/sda"; # or "nodev" for efi only
-  hardware.opengl.enable = true;
-  hardware.opengl.driSupport = true;
+  #hardware.opengl.enable = true;
+  #hardware.opengl.driSupport = true;
   
 
 
@@ -166,6 +166,6 @@
   services.tlp.enable = true;
 
   system.stateVersion = "18.09"; # Did you read the comment?
-  #system.autoUpgrade.enable = true;
+  system.autoUpgrade.enable = true;
 
 }
