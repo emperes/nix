@@ -7,41 +7,26 @@
     ];
 
   #boot.loader.efi.efiSysMountPoint = "/boot/efi";
-  boot.loader.grub = {
-    enable = true;
-    version = 2;
-    device = "/dev/sda"; # or "nodev" for efi only
-    #efiSupport = true;
-    #efiInstallAsRemovable = true;
-  };  
-  
-  hardware ={
-    opengl = {
-      enable = true;
-      driSupport = true;
-      driSupport32Bit = true;
-      extraPackages = with pkgs; [ vaapiIntel libvdpau-va-gl vaapiVdpau ];
-      extraPackages32 = with pkgs.pkgsi686Linux; [ vaapiIntel libvdpau-va-gl vaapiVdpau ];
-      s3tcSupport = true;
-  };
-
-  networking = {
-    hostName = "ollerus"; # Define your hostname.
-    networkmanager.enable = true;
-    #wireless.enable = true;  # wpa_supplicant
-    #firewall.allowedTCPPorts = [ ... ];
-    #firewall.allowedUDPPorts = [ ... ];
-    #firewall.enable = false;
-    proxy = {
-      default = "http://user:password@proxy:port/";
-      noProxy = "127.0.0.1,localhost,internal.domain";
-    }; 
-  };
-
-  # Enable unfree packages.
+  #boot.loader.grub.efiSupport = true;
+  #boot.loader.grub.efiInstallAsRemovable = true;
+  boot.loader.grub.enable = true;
+  boot.loader.grub.version = 2;
+  boot.loader.grub.device = "/dev/sda"; # or "nodev" for efi only
+  hardware.opengl.enable = true;
+  hardware.opengl.driSupport = true;
+  hardware.opengl.driSupport32Bit = true;
+  hardware.opengl.extraPackages = with pkgs; [ vaapiIntel libvdpau-va-gl vaapiVdpau ];
+  hardware.opengl.extraPackages32 = with pkgs.pkgsi686Linux; [ vaapiIntel libvdpau-va-gl vaapiVdpau ];
+  hardware.opengl.s3tcSupport = true;
+  networking.hostName = "ollerus"; # Define your hostname.
+  networking.networkmanager.enable = true;
+  #networking.wireless.enable = true;  # wpa_supplicant
+  #networking.firewall.allowedTCPPorts = [ ... ];
+  #networking.firewall.allowedUDPPorts = [ ... ];
+  #networking.firewall.enable = false;
+  #networking.proxy.default = "http://user:password@proxy:port/";
+  #networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
   nixpkgs.config.allowUnfree = true;
-  chromium.enablePepperFlash = true;
-  
   programs = {
     #gnupg.agent = {
     #  enable = true;
@@ -62,7 +47,7 @@
       };
     };
   };
-  
+
   environment.systemPackages = with pkgs; [
     zsh tmux mc 
     unzip ntfs3g xarchiver
@@ -74,7 +59,6 @@
     chromium pavucontrol
   ];
 
-  # Select internationalisation properties.
   i18n = {
     consoleFont = "UniCyr_8x16";
     consoleKeyMap = "ruwin_cplk-UTF-8";
@@ -84,14 +68,8 @@
                       "839496" "6c71c4" "93a1a1" "fdf6e3" ];
   };
 
-  #Fonts
   fonts = {
-    fonts = with pkgs; [
-      noto-fonts
-      noto-fonts-emoji
-      noto-fonts-extra
-      noto-fonts-cjk
-    ];
+    fonts = with pkgs; [ noto-fonts noto-fonts-emoji noto-fonts-extra noto-fonts-cjk ];
 
     enableDefaultFonts = true;
 
@@ -101,7 +79,7 @@
       serif = [ "Noto Serif" ];
     };
   };
-  
+
   users.extraUsers.obliq = {
     isNormalUser = true;
     name = "obliq";
@@ -127,47 +105,32 @@
     '';
   };
 
-  services = {
-    xserver = {
-      enable = true;
-      xkbModel = "microsoft";
-      xkbVariant = "winkeys";
-      layout = "us,ru(winkeys)";
-      xkbOptions = "grp:caps_toggle";
-      videoDrivers = [ "intel" ];
-      libinput.enable = true;
-      desktopManager = {
-        enlightenment.enable = true;
-        default = "Enlightenment";
-      };
-      displayManager.auto = { enable = true; user = "obliq"; };
-    };
-
-    compton = {
-      enable = true;
-      vSync = "opengl";
-      shadow = true;
-      menuOpacity = "0.9";
-      shadowOpacity = "0.3";
-    };
-
-    acpid.enable = true;
-    tlp.enable = true;
-    illum.enable = true;
-    printing.enable = true; # CUPS
-    openssh.enable = true;
-    dbus.enable = true;
-    nixosManual.showManual = true;
-    locate.enable = true;
-    udisks2.enable = true;
-    ntp.enable = true;
-  };
-  
+  services.xserver.enable = true;
+  services.xserver.xkbModel = "microsoft";
+  services.xserver.xkbVariant = "winkeys";
+  services.xserver.layout = "us,ru(winkeys)";
+  services.xserver.xkbOptions = "grp:caps_toggle";
+  services.xserver.videoDrivers = [ "intel" ];
+  services.xserver.libinput.enable = true;
+  services.xserver.desktopManager.enlightenment.enable = true;
+  services.xserver.desktopManager.default = "Enlightenment";
+  services.xserver.displayManager.auto = { enable = true; user = "obliq"; };
+  services.compton.enable = true;
+  services.compton.vSync = "opengl";
+  services.compton.shadow = true;
+  services.compton.menuOpacity = "0.9";
+  services.compton.shadowOpacity = "0.3";
+  services.acpid.enable = true;
+  services.tlp.enable = true;
+  services.illum.enable = true;
+  services.printing.enable = true; # CUPS
+  services.openssh.enable = true;
+  services.dbus.enable = true;
+  services.nixosManual.showManual = true;
+  services.locate.enable = true;
+  services.udisks2.enable = true;
+  services.ntp.enable = true;
   time.timeZone = "Europe/Moscow";
-  
-  system = {
-    stateVersion = "18.09";
-    autoUpgrade = {
-      enable = true;
-  };
+  system.autoUpgrade.enable = true;
+  system.stateVersion = "18.09";
 }
