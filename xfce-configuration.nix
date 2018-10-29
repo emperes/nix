@@ -63,6 +63,7 @@
     djview xpdf rsync ffmpeg-full
     python3 python36Packages.virtualenv python36Packages.pip
     chromium pavucontrol
+    xfce4-13.xfce4-xkb-plugin
   ];
 
   # Select internationalisation properties.
