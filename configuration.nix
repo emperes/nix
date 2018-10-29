@@ -25,17 +25,22 @@
       s3tcSupport = true;
   };
 
-  networking.hostName = "ollerus"; # Define your hostname.
-  networking.networkmanager.enable = true;
-  #networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-  
+  networking = {
+    hostName = "ollerus"; # Define your hostname.
+    networkmanager.enable = true;
+    #wireless.enable = true;  # wpa_supplicant
+    #firewall.allowedTCPPorts = [ ... ];
+    #firewall.allowedUDPPorts = [ ... ];
+    #firewall.enable = false;
+    proxy = {
+      default = "http://user:password@proxy:port/";
+      noProxy = "127.0.0.1,localhost,internal.domain";
+    }; 
+  };
+
   # Enable unfree packages.
   nixpkgs.config.allowUnfree = true;
   chromium.enablePepperFlash = true;
-  
-  # Configure network proxy if necessary
-  # networking.proxy.default = "http://user:password@proxy:port/";
-  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
   
   programs = {
     #gnupg.agent = {
@@ -113,12 +118,6 @@
     home = "/home/obliq";
   };
 
-  # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
-  # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
-
   sound.enable = true;
   hardware.pulseaudio = {
     enable = true;
@@ -128,30 +127,30 @@
     '';
   };
 
-
-  # Enable the X11 windowing system.
-  services.xserver = {
-    enable = true;
-    xkbModel = "microsoft";
-    xkbVariant = "winkeys";
-    layout = "us,ru(winkeys)";
-    xkbOptions = "grp:caps_toggle";
-    videoDrivers = [ "intel" ];
-    libinput.enable = true;
-    desktopManager.enlightenment.enable = true;
-    desktopManager.default = "Enlightenment";
-    displayManager.auto = { enable = true; user = "obliq"; };
-  };
-  
-  services.compton = {
-    enable = true;
-    vSync = "opengl";
-    shadow = true;
-    menuOpacity = "0.9";
-    shadowOpacity = "0.3";
-  };
-  
   services = {
+    xserver = {
+      enable = true;
+      xkbModel = "microsoft";
+      xkbVariant = "winkeys";
+      layout = "us,ru(winkeys)";
+      xkbOptions = "grp:caps_toggle";
+      videoDrivers = [ "intel" ];
+      libinput.enable = true;
+      desktopManager = {
+        enlightenment.enable = true;
+        default = "Enlightenment";
+      };
+      displayManager.auto = { enable = true; user = "obliq"; };
+    };
+
+    compton = {
+      enable = true;
+      vSync = "opengl";
+      shadow = true;
+      menuOpacity = "0.9";
+      shadowOpacity = "0.3";
+    };
+
     acpid.enable = true;
     tlp.enable = true;
     illum.enable = true;
