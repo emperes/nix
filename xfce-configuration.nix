@@ -25,6 +25,7 @@
   
   # Enable unfree packages.
   nixpkgs.config.allowUnfree = true;
+  chromium.enablePepperFlash = true;
   
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
