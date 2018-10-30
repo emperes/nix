@@ -1,3 +1,4 @@
+{
   hardware = {
     opengl.enable = true;
     opengl.driSupport = true;
@@ -7,3 +8,4 @@
     opengl.s3tcSupport = true;
     pulseaudio = { enable = true; package = pkgs.pulseaudioFull; extraConfig = ''load-module module-switch-on-connect''; };
   };
+}
