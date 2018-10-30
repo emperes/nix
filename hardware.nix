@@ -6,3 +6,4 @@
     opengl.extraPackages32 = with pkgs.pkgsi686Linux; [ vaapiIntel libvdpau-va-gl vaapiVdpau ];
     opengl.s3tcSupport = true;
     pulseaudio = { enable = true; package = pkgs.pulseaudioFull; extraConfig = ''load-module module-switch-on-connect''; };
+  };
