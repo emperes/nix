@@ -30,5 +30,5 @@
                                                         liblxqt lxqt-build-tools lxqt-panel lxqt-sudo qlipper
                                                         libqtxdg lxqt-config lxqt-policykit lxqt-themes qps screengrab
                                                         libsysstat lxqt-globalkeys lxqt-powermanagement qterminal
-                                                        lximage-qt lxqt-l10n lxqt-qtplugin obconf-qt qtermwidget ]                                                      
+                                                        lximage-qt lxqt-l10n lxqt-qtplugin obconf-qt qtermwidget ];                                                     
 }
