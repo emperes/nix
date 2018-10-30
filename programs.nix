@@ -22,4 +22,8 @@
       };
     };
   };
+  environment.systemPackages = with pkgs; [ tmux mc unzip ntfs3g xarchiver
+                                            gnupg gnupg1compat git cmake gnumake gcc firefox vlc screenfetch wget
+                                            djview xpdf rsync ffmpeg-full python3
+                                            python36Packages.virtualenv python36Packages.pip chromium pavucontrol ];
 }
