@@ -114,7 +114,10 @@
   services.xserver.libinput.enable = true;
   services.xserver.desktopManager.enlightenment.enable = true;
   services.xserver.desktopManager.default = "Enlightenment";
-  services.xserver.displayManager.auto = { enable = true; user = "obliq"; };
+  services.xserver.displayManager.lightdm.enable = true;
+  services.xserver.displayManager.lightdm.autoLogin.enable = true;
+  services.xserver.displayManager.lightdm.autoLogin.user = "obliq";
+  #services.xserver.displayManager.auto = { enable = true; user = "obliq"; };
   services.compton.enable = true;
   services.compton.vSync = "opengl";
   services.compton.shadow = true;
@@ -126,7 +129,7 @@
   services.printing.enable = true; # CUPS
   services.openssh.enable = true;
   services.dbus.enable = true;
-  services.nixosManual.showManual = true;
+  #services.nixosManual.showManual = true;
   services.locate.enable = true;
   services.udisks2.enable = true;
   services.ntp.enable = true;
