@@ -133,6 +133,7 @@
   services.printing.enable = true; # CUPS
   services.openssh.enable = true;
   services.dbus.enable = true;
+  cron.enable = true;
   #services.nixosManual.showManual = true;
   services.locate.enable = true;
   services.udisks2.enable = true;
