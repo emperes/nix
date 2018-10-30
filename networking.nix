@@ -1,5 +1,5 @@
 }
-  networking = { hostName = "ollerus"; networkmanager.enable = true; #wireless.enable = true;
+  networking = { hostName = "ollerus"; networkmanager.enable = true; #wireless.enable = true; }; = {
     firewall = {
       allowedTCPPorts = [ ... ];
       allowedUDPPorts = [ ... ];
