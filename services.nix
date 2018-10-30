@@ -15,8 +15,8 @@
   
   ##############################################################
   #DE                                                          #
-  services.xserver.desktopManager.enlightenment.enable = true; #
-  services.xserver.desktopManager.default = "Enlightenment";   #
+  services.xserver.desktopManager. ... .enable = true;         #
+  services.xserver.desktopManager.default = " ... ";           #
   ##############################################################
   
   ############################################################################
