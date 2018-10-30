@@ -15,8 +15,8 @@
   
   ##############################################################
   #DE                                                          #
-  services.xserver.desktopManager. ... .enable = true;         #
-  services.xserver.desktopManager.default = " ... ";           #
+  services.xserver.desktopManager.lxqt.enable = true;          #
+  services.xserver.desktopManager.default = "lxqt";            #
   ##############################################################
   
   ############################################################################
