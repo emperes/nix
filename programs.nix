@@ -1,5 +1,8 @@
-}
-  nixpkgs.config = { allowBroken = true; allowUnfree = true; }
+{
+  nixpkgs.config.allowUnfree = true;
+  nixpkgs.config.allowBroken = true;
+  programs.rootston.enable = true;
+  programs.sway.enable = true;
   programs = {
     #gnupg.agent = {
     #  enable = true;
