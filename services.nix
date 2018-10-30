@@ -1,50 +1,28 @@
 {
   services.xserver.enable = true;
-  ##################################################
-  #KEYBOARD                                        #
-  services.xserver.xkbModel = "microsoft";         #
-  services.xserver.xkbVariant = "winkeys";         #
-  services.xserver.layout = "us,ru(winkeys)";      #
-  services.xserver.xkbOptions = "grp:caps_toggle"; #
-  ##################################################
-  
-  ##########################################
-  #SYNAPTIC/TOUCHPAD                       #
-  services.xserver.libinput.enable = true; #
-  ##########################################
-  
-  ##############################################################
-  #DE                                                          #
-  services.xserver.desktopManager.lxqt.enable = true;          #
-  services.xserver.desktopManager.default = "lxqt";            #
-  ##############################################################
-  
+  services.xserver.xkbModel = "microsoft";
+  services.xserver.xkbVariant = "winkeys";
+  services.xserver.layout = "us,ru(winkeys)";
+  services.xserver.xkbOptions = "grp:caps_toggle";
+  services.xserver.libinput.enable = true;
+  services.xserver.desktopManager.lxqt.enable = true;
   services.xserver.displayManager.auto.enable = true;
   services.xserver.displayManager.auto.user = "obliq";
-  
   environment.lxqt.excludePackages  = with pkgs.lxqt; [ compton-conf lxqt-about lxqt-notificationd lxqt-runner pavucontrol-qt
                                                         libfm-qt lxqt-admin lxqt-openssh-askpass lxqt-session pcmanfm-qt
                                                         liblxqt lxqt-build-tools lxqt-panel lxqt-sudo qlipper
                                                         libqtxdg lxqt-config lxqt-policykit lxqt-themes qps screengrab
                                                         libsysstat lxqt-globalkeys lxqt-powermanagement qterminal
                                                         lximage-qt lxqt-l10n lxqt-qtplugin obconf-qt qtermwidget ]
-  ##############################################
-  #GRAPHIC                                     #
-  #services.xserver.videoDrivers = [ "intel" ]; #
-  services.compton.enable = true;              #
-  services.compton.vSync = "opengl";           #
-  services.compton.shadow = true;              #
-  services.compton.menuOpacity = "0.9";        #
-  services.compton.shadowOpacity = "0.3";      #
-  ##############################################
-  
-  ###############################
-  #LAPTOP                       #
-  services.acpid.enable = true; #
-  services.tlp.enable = true;   #
-  services.illum.enable = true; #
-  ###############################
-  
+  services.xserver.videoDrivers = [ "intel" ];
+  services.compton.enable = true;
+  services.compton.vSync = "opengl";
+  services.compton.shadow = true;
+  services.compton.menuOpacity = "0.9";
+  services.compton.shadowOpacity = "0.3";
+  services.acpid.enable = true;
+  services.tlp.enable = true;
+  services.illum.enable = true;
   services.printing.enable = true; # CUPS
   services.openssh.enable = true;
   services.dbus.enable = true;
