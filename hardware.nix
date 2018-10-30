@@ -1,4 +1,5 @@
 {
+  time.timeZone = "Europe/Moscow";
   sound.enable = true;
   hardware = {
     opengl.enable = true;
