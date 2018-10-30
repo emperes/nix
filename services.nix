@@ -25,7 +25,7 @@
   services.udisks2.enable = true;
   services.ntp.enable = true;
   #services.nixosManual.showManual = true;
-  environment.lxqt.excludePackages  = with pkgs.lxqt; [ compton-conf lxqt-about lxqt-notificationd lxqt-runner pavucontrol-qt
+  environment.lxqt.excludePackages = with pkgs.lxqt; [ compton-conf lxqt-about lxqt-notificationd lxqt-runner pavucontrol-qt
                                                         libfm-qt lxqt-admin lxqt-openssh-askpass lxqt-session pcmanfm-qt
                                                         liblxqt lxqt-build-tools lxqt-panel lxqt-sudo qlipper
                                                         libqtxdg lxqt-config lxqt-policykit lxqt-themes qps screengrab
