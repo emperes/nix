@@ -2,7 +2,7 @@
   networking = {
     hostName = "ollerus";
     networkmanager.enable = true;
-    wireless.enable = true;
+    #wireless.enable = true; # wpa
     #firewall.allowedTCPPorts = [ ... ];
     #firewall.allowedUDPPorts = [ ... ];
     #firewall.enable = false;
