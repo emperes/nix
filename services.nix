@@ -30,7 +30,7 @@
                                                         lximage-qt lxqt-l10n lxqt-qtplugin obconf-qt qtermwidget ]
   ##############################################
   #GRAPHIC                                     #
-  services.xserver.videoDrivers = [ "intel" ]; #
+  #services.xserver.videoDrivers = [ "intel" ]; #
   services.compton.enable = true;              #
   services.compton.vSync = "opengl";           #
   services.compton.shadow = true;              #
