@@ -14,9 +14,9 @@
   boot.loader.grub.device = "/dev/sda"; # or "nodev" for efi only
   hardware.opengl.enable = true;
   hardware.opengl.driSupport = true;
-  hardware.opengl.driSupport32Bit = true;
+  #hardware.opengl.driSupport32Bit = true;
   hardware.opengl.extraPackages = with pkgs; [ vaapiIntel libvdpau-va-gl vaapiVdpau ];
-  hardware.opengl.extraPackages32 = with pkgs.pkgsi686Linux; [ vaapiIntel libvdpau-va-gl vaapiVdpau ];
+  #hardware.opengl.extraPackages32 = with pkgs.pkgsi686Linux; [ vaapiIntel libvdpau-va-gl vaapiVdpau ];
   hardware.opengl.s3tcSupport = true;
   networking.hostName = "ollerus"; # Define your hostname.
   networking.networkmanager.enable = true;
@@ -27,6 +27,9 @@
   #networking.proxy.default = "http://user:password@proxy:port/";
   #networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
   nixpkgs.config.allowUnfree = true;
+  nixpkgs.config.allowBroken = true;
+  programs.rootston.enable = true;
+  programs.sway.enable = true;
   programs = {
     #gnupg.agent = {
     #  enable = true;
