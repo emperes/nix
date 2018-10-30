@@ -19,13 +19,15 @@
   services.xserver.desktopManager.default = "lxqt";            #
   ##############################################################
   
+  services.xserver.displayManager.auto.enable = true;
+  services.xserver.displayManager.auto.user = "obliq";
+  
   environment.lxqt.excludePackages  = with pkgs.lxqt; [ compton-conf lxqt-about lxqt-notificationd lxqt-runner pavucontrol-qt
                                                         libfm-qt lxqt-admin lxqt-openssh-askpass lxqt-session pcmanfm-qt
                                                         liblxqt lxqt-build-tools lxqt-panel lxqt-sudo qlipper
                                                         libqtxdg lxqt-config lxqt-policykit lxqt-themes qps screengrab
                                                         libsysstat lxqt-globalkeys lxqt-powermanagement qterminal
                                                         lximage-qt lxqt-l10n lxqt-qtplugin obconf-qt qtermwidget ]
-  services.xserver.displayManager.auto = { enable = true; user = "obliq"; };
   ##############################################
   #GRAPHIC                                     #
   services.xserver.videoDrivers = [ "intel" ]; #
