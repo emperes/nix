@@ -24,7 +24,7 @@
   };
   environment.systemPackages = with pkgs; [ tmux mc unzip ntfs3g xarchiver
                                             gnupg gnupg1compat git cmake gnumake gcc 
-                                            firefox vlc screenfetch wget
+                                            firefox vlc screenfetch neofetch wget
                                             djview xpdf rsync ffmpeg-full python37Full
                                             chromium pavucontrol pasystray paprefs ];
 }
