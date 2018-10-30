@@ -1,4 +1,5 @@
 {
+  system = { autoUpgrade.enable = true; stateVersion = "18.09"; };
   nixpkgs.config = { allowBroken = true; allowUnfree = true; };
   programs = {
     #gnupg.agent = {
