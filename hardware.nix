@@ -1,4 +1,5 @@
 {
+  sound.enable = true;
   hardware = {
     opengl.enable = true;
     opengl.driSupport = true;
