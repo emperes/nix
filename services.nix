@@ -19,6 +19,13 @@
   services.xserver.desktopManager.default = "lxqt";            #
   ##############################################################
   
+  environment.lxqt.excludePackages  = with pkgs.lxqt; [ compton-conf lxqt-about lxqt-notificationd lxqt-runner pavucontrol-qt
+                                                        libfm-qt lxqt-admin lxqt-openssh-askpass lxqt-session pcmanfm-qt
+                                                        liblxqt lxqt-build-tools lxqt-panel lxqt-sudo qlipper
+                                                        libqtxdg lxqt-config lxqt-policykit lxqt-themes qps screengrab
+                                                        libsysstat lxqt-globalkeys lxqt-powermanagement qterminal
+                                                        lximage-qt lxqt-l10n lxqt-qtplugin obconf-qt qtermwidget ]
+  
   ############################################################################
   #DM                                                                        #
   #services.xserver.displayManager.lightdm.enable = true;                    #     
