@@ -25,15 +25,7 @@
                                                         libqtxdg lxqt-config lxqt-policykit lxqt-themes qps screengrab
                                                         libsysstat lxqt-globalkeys lxqt-powermanagement qterminal
                                                         lximage-qt lxqt-l10n lxqt-qtplugin obconf-qt qtermwidget ]
-  
-  ############################################################################
-  #DM                                                                        #
-  #services.xserver.displayManager.lightdm.enable = true;                    #     
-  #services.xserver.displayManager.lightdm.autoLogin.enable = true;          #
-  #services.xserver.displayManager.lightdm.autoLogin.user = "obliq";         #
-  services.xserver.displayManager.auto = { enable = true; user = "obliq"; }; #
-  ############################################################################
-  
+  services.xserver.displayManager.auto = { enable = true; user = "obliq"; };
   ##############################################
   #GRAPHIC                                     #
   services.xserver.videoDrivers = [ "intel" ]; #
