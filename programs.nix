@@ -1,6 +1,5 @@
 {
-  nixpkgs.config.allowUnfree = true;
-  nixpkgs.config.allowBroken = true;
+  nixpkgs.config = { allowBroken = true; allowUnfree = true; };
   programs.rootston.enable = true;
   programs.sway.enable = true;
   programs = {
