@@ -57,6 +57,7 @@
     djview xpdf rsync ffmpeg-full
     python3 python36Packages.virtualenv python36Packages.pip
     chromium pavucontrol
+    enlightenment.ephoto enlightenment.rage
   ];
 
   i18n = {
