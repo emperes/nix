@@ -5,9 +5,8 @@
   services.xserver.layout = "us,ru(winkeys)";
   services.xserver.xkbOptions = "grp:caps_toggle";
   services.xserver.libinput.enable = true;
-  services.xserver.desktopManager.lxqt.enable = true;
-  services.xserver.displayManager.auto.enable = true;
-  services.xserver.displayManager.auto.user = "obliq";
+  services.xserver.desktopManager = { lxqt.enable = true; default = "lxqt"; };
+  services.xserver.displayManager.auto = { enable = true; user = "obliq"; };
   services.xserver.videoDrivers = [ "intel" ];
   services.compton.enable = true;
   services.compton.vSync = "opengl";
