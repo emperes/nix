@@ -124,7 +124,13 @@
                                             xfce4-13.xfce4-pulseaudio-plugin xfce4-13.xfce4-screenshooter
                                             xfce.xfce4-sensors-plugin xfce4-13.xfce4-session
                                             xfce4-13.xfce4-settings xfce.xfce4-systemload-plugin
-                                            xfce4-13.xfce4-taskmanager];
+                                            xfce4-13.xfce4-taskmanager xfce4-13.xfce4-terminal
+                                            xfce.xfce4-timer-plugin xfce.xfce4-vala-panel-appmenu-plugin
+                                            xfce.xfce4-verve-plugin xfce.xfce4-volumed
+                                            xfce4-13.xfce4-volumed-pulse xfce.xfce4-weather-plugin
+                                            xfce4-13.xfce4-whiskermenu-plugin xfce4-13.xfce4-windowck-plugin
+                                            xfce4-13.xfce4-xkb-plugin xfce4-13.xfconf
+                                            xfce4-13.xfdesktop xfce4-13.xfwm4 xfce4-13.xfwm4-themes];
 
   services.xserver.enable = true;
   services.xserver.xkbModel = "microsoft";
