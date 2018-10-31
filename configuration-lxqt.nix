@@ -22,7 +22,7 @@
     #bluetooth.enable = true;
     enableRedistributableFirmware = true;
     cpu.intel.updateMicrocode = true;
-    #cpu.amd.updateMicrocode = false;
+    #cpu.amd.updateMicrocode = true;
     opengl.enable = true;
     opengl.driSupport = true;
     opengl.driSupport32Bit = true;
