@@ -140,7 +140,7 @@
   services.xserver.libinput.enable = true;
   services.xserver.desktopManager = { xfce.enable = true; default = "xfce";
                                       xfce.thunarPlugins = [ pkgs.xfce.thunar-archive-plugin
-                                                             pkgs.xfce.thunar_volman 
+                                                             pkgs.xfce4-13.thunar-volman 
                                                              pkgs.xfce.thunar-dropbox-plugin ]; };
   services.xserver.displayManager.auto = { enable = true; user = "obliq"; };
   services.xserver.videoDrivers = [ "intel" ];
