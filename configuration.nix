@@ -75,9 +75,9 @@
     #  enableSshSupport = true;
     #};
     #mtr.enable = true;
-    rootston.enable = true;
-    sway.enable = true;
-    java.enable = true;
+    #rootston.enable = true;
+    #sway.enable = true;
+    #java.enable = true;
     adb.enable = true;
     zsh = {
       enable = true;
@@ -96,7 +96,7 @@
                                             gnupg gnupg1compat gitFull cmake gnumake gcc 
                                             firefox vlc neofetch wget python3Full unar
                                             djview xpdf rsync ffmpeg-full python37Full
-                                            chromium pavucontrol pasystray paprefs
+                                            chromium pavucontrol xarchiver geany
                                             
                                             #XFCE
                                             albatross elementary-xfce-icon-theme xfce4-13.exo
@@ -145,19 +145,19 @@
   sound.mediaKeys.enable = true;
   services.compton.enable = true;
   services.compton.vSync = "opengl";
-  services.compton.shadow = true;
-  services.compton.menuOpacity = "0.9";
-  services.compton.shadowOpacity = "0.3";
+  #services.compton.shadow = true;
+  #services.compton.menuOpacity = "0.9";
+  #services.compton.shadowOpacity = "0.3";
   services.acpid.enable = true;
   services.tlp.enable = true;
   services.illum.enable = true;
-  services.printing.enable = true; # CUPS
-  services.openssh.enable = true;
+  #services.printing.enable = true; # CUPS
+  #services.openssh.enable = true;
   services.dbus.enable = true;
-  services.cron.enable = true;
-  services.locate.enable = true;
-  services.udisks2.enable = true;
-  services.ntp.enable = true;
+  #services.cron.enable = true;
+  #services.locate.enable = true;
+  #services.udisks2.enable = true;
+  #services.ntp.enable = true;
   #services.nixosManual.showManual = true;
   
   users.extraUsers.obliq = {
@@ -168,7 +168,7 @@
     shell = pkgs.zsh;
     extraGroups = [
       "dialout" "plugdev" "audio" 
-      "video" "disk" "libvirtd"
+      "video" "disk" "libvirtd" "nixbld"
       "networkmanager" "systemd-journal" 
       "wheel" "adb" "power" "vboxusers" 
     ];
