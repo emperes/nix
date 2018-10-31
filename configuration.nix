@@ -79,7 +79,7 @@
     sway.enable = true;
     java.enable = true;
     adb.enable = true;
-    info.enable = true;
+    documentation.info.enable = true;
     zsh = {
       enable = true;
       enableCompletion = true;
