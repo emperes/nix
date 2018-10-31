@@ -109,7 +109,7 @@
   services.xserver.xkbOptions = "grp:caps_toggle";
   services.xserver.libinput.enable = true;
   services.xserver.desktopManager = { xfce.enable = true; default = "xfce";
-                                      noDesktop = true;
+                                      xfce.noDesktop = true;
                                       xfce.thunarPlugins = [ pkgs.xfce.thunar-archive-plugin
                                                              pkgs.xfce4-13.thunar-volman 
                                                              pkgs.xfce.thunar-dropbox-plugin ]; };
