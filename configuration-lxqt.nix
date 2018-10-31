@@ -36,8 +36,8 @@
     consoleFont = "UniCyr_8x16";
     consoleKeyMap = "ruwin_cplk-UTF-8";
     defaultLocale = "ru_RU.UTF-8";
-    consoleColors = [ "161616" "a65353" "909653" "bd9c5a" "5f788c" "816b87" "688c88" "c5c5c5"
-                      "4a4a4a" "cc6666" "b5bd68" "f0c674" "81a2be" "b294bb" "8abeb7" "f7f7f7" ];
+    consoleColors = [ "1C1B19" "EF2F27" "519F50" "FBB829" "2C78BF" "E02C6D" "0AAEB3" "918175"
+                      "2D2C29" "F75341" "98BC37" "FED06E" "68A8E4" "FF5C8F" "53FDE9" "FCE8C3" ];
   };
   fonts = {
     fonts = with pkgs; [ noto-fonts noto-fonts-emoji noto-fonts-extra noto-fonts-cjk ];
