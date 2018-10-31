@@ -33,7 +33,12 @@
     opengl.extraPackages = with pkgs; [ vaapiIntel libvdpau-va-gl vaapiVdpau ];
     opengl.extraPackages32 = with pkgs.pkgsi686Linux; [ vaapiIntel libvdpau-va-gl vaapiVdpau ];
     opengl.s3tcSupport = true;
-    pulseaudio = { enable = true; pkgs.pulseaudioFull.override { jackaudioSupport = true; }; extraConfig = ''load-module module-switch-on-connect''; };
+    pulseaudio = { 
+      enable = true; 
+      package = pkgs.pulseaudioFull.override { jackaudioSupport = true; }; 
+      extraConfig = ''load-module module-switch-on-connect'';
+      support32Bit = true;
+    };  
   };
 
   i18n = {
@@ -75,6 +80,8 @@
     rootston.enable = true;
     sway.enable = true;
     java.enable = true;
+    adb.enable = true;
+    info.enable = true;
     zsh = {
       enable = true;
       enableCompletion = true;
@@ -88,19 +95,21 @@
       };
     };
   };
-  environment.systemPackages = with pkgs; [ tmux mc unzip ntfs3g xarchiver
+  environment.systemPackages = with pkgs; [ tmux mc unzip ntfs3g python2Full mate.engrampa
                                             gnupg gnupg1compat gitFull cmake gnumake gcc 
-                                            firefox vlc screenfetch neofetch wget
+                                            firefox vlc neofetch wget python3Full unar
                                             djview xpdf rsync ffmpeg-full python37Full
                                             chromium pavucontrol pasystray paprefs ];
 
- services.xserver.enable = true;
+  services.xserver.enable = true;
   services.xserver.xkbModel = "microsoft";
   services.xserver.xkbVariant = "winkeys";
   services.xserver.layout = "us,ru(winkeys)";
   services.xserver.xkbOptions = "grp:caps_toggle";
   services.xserver.libinput.enable = true;
-  services.xserver.desktopManager = { lxqt.enable = true; default = "lxqt"; };
+  services.xserver.desktopManager = { xfce.enable = true; default = "xfce"; xfce.thunarPlugins = [ pkgs.xfce.thunar-archive-plugin
+                                                                                                   pkgs.xfce.thunar_volman 
+                                                                                                   pkgs.xfce.thunar-dropbox-plugin ]; };
   services.xserver.displayManager.auto = { enable = true; user = "obliq"; };
   services.xserver.videoDrivers = [ "intel" ];
   services.compton.enable = true;
@@ -119,13 +128,7 @@
   services.udisks2.enable = true;
   services.ntp.enable = true;
   #services.nixosManual.showManual = true;
-  environment.lxqt.excludePackages = with pkgs.lxqt; [ compton-conf lxqt-about lxqt-notificationd lxqt-runner pavucontrol-qt
-                                                        libfm-qt lxqt-admin lxqt-openssh-askpass lxqt-session pcmanfm-qt
-                                                        liblxqt lxqt-build-tools lxqt-panel lxqt-sudo qlipper
-                                                        libqtxdg lxqt-config lxqt-policykit lxqt-themes qps screengrab
-                                                        libsysstat lxqt-globalkeys lxqt-powermanagement qterminal
-                                                        lximage-qt lxqt-l10n lxqt-qtplugin obconf-qt qtermwidget ];
-
+  
   users.extraUsers.obliq = {
     isNormalUser = true;
     name = "obliq";
