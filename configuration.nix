@@ -107,7 +107,7 @@
   services.xserver.xkbVariant = "winkeys";
   services.xserver.layout = "us,ru(winkeys)";
   services.xserver.xkbOptions = "grp:caps_toggle";
-  services.xserver.libinput.enable = true;
+  #services.xserver.libinput.enable = true;
   services.xserver.desktopManager = { xfce.enable = true; default = "xfce";
                                       xfce.noDesktop = true;
                                       xfce.thunarPlugins = [ pkgs.xfce.thunar-archive-plugin
