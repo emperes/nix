@@ -113,6 +113,8 @@
                                                              pkgs.xfce.thunar-dropbox-plugin ]; };
   services.xserver.displayManager.auto = { enable = true; user = "obliq"; };
   services.xserver.videoDrivers = [ "intel" ];
+  services.actkbd.enable = true;
+  sound.mediaKeys.enable = true;
   services.compton.enable = true;
   services.compton.vSync = "opengl";
   services.compton.shadow = true;
