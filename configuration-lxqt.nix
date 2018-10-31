@@ -99,7 +99,32 @@
                                             gnupg gnupg1compat gitFull cmake gnumake gcc 
                                             firefox vlc neofetch wget python3Full unar
                                             djview xpdf rsync ffmpeg-full python37Full
-                                            chromium pavucontrol pasystray paprefs ];
+                                            chromium pavucontrol pasystray paprefs
+                                            
+                                            #XFCE
+                                            albatross elementary-xfce-icon-theme xfce4-13.exo
+                                            xfce4-13.garcon xfce4-13.gigolo greybird
+                                            xfce4-13.gtk-xfce-engine xfce.gvfs xfce4-13.automakeAddFlags
+                                            indicator-application-gtk2 xfce4-13.libxfce4ui
+                                            xfce4-13.libxfce4util lxtask xfce4-13.mousepad
+                                            numix-gtk-theme xfce4-13.orage xfce4-13.parole
+                                            plano-theme xfce4-13.ristretto xfce4-13.thunar
+                                            xfce4-13.tumbler xfce4-13.xfburn xfce4-13.xfce4-appfinder
+                                            xfce4-13.xfce4-battery-plugin xfce4-13.xfce4-clipman-plugin
+                                            xfce4-13.xfce4-cpufreq-plugin xfce.xfce4-cpugraph-plugin
+                                            xfce.xfce4-datetime-plugin xfce4-13.xfce4-dev-tools
+                                            xfce4-13.xfce4-dict xfce4-13.xfce4-dockbarx-plugin
+                                            xfce4-13.xfce4-embed-plugin xfce.xfce4-eyes-plugin
+                                            xfce.xfce4-fsguard-plugin xfce.xfce4-genmon-plugin
+                                            xfce4-13.xfce4-hardware-monitor-plugin xfce4-13.xfce4-icon-theme
+                                            xfce.xfce4-mailwatch-plugin xfce4-13.xfce4-mixer
+                                            xfce.xfce4-mpc-plugin xfce4-13.xfce4-namebar-plugin
+                                            xfce4-13.xfce4-netload-plugin xfce4-13.xfce4-notifyd
+                                            xfce4-13.xfce4-panel xfce4-13.xfce4-power-manager
+                                            xfce4-13.xfce4-pulseaudio-plugin xfce4-13.xfce4-screenshooter
+                                            xfce.xfce4-sensors-plugin xfce4-13.xfce4-session
+                                            xfce4-13.xfce4-settings xfce.xfce4-systemload-plugin
+                                            xfce4-13.xfce4-taskmanager];
 
   services.xserver.enable = true;
   services.xserver.xkbModel = "microsoft";
