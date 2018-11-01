@@ -15,6 +15,7 @@
       };  
     };
   };
+
   time.timeZone = "Europe/Moscow";
   sound.enable = true;
   hardware = {
@@ -28,10 +29,8 @@
     opengl.extraPackages = with pkgs; [ vaapiIntel libvdpau-va-gl vaapiVdpau ];
     #opengl.extraPackages32 = with pkgs.pkgsi686Linux; [ vaapiIntel libvdpau-va-gl vaapiVdpau ];
     opengl.s3tcSupport = true;
-    pulseaudio = { 
-      enable = true; 
-      package = pkgs.pulseaudioFull.override
-    };
+    pulseaudio = { enable = true; package = pkgs.pulseaudioFull.override };
+
   };
   i18n = {
     consoleFont = "UniCyr_8x16";
@@ -42,6 +41,7 @@
                       "2D2C29" "F75341" "98BC37" "FED06E"
                       "68A8E4" "FF5C8F" "53FDE9" "FCE8C3" ];
   };
+
   fonts = {
     fonts = with pkgs; [ noto-fonts noto-fonts-emoji noto-fonts-extra noto-fonts-cjk liberation_ttf ];
     enableDefaultFonts = true;
@@ -51,6 +51,7 @@
       serif = [ "Noto Serif" ];
     };
   };
+
   networking = {
     hostName = "ollerus";
     networkmanager.enable = true;
@@ -61,6 +62,7 @@
     #proxy.default = "http://user:password@proxy:port/";
     #proxy.noProxy = "127.0.0.1,localhost,internal.domain";
   };
+
   system = { autoUpgrade.enable = true; stateVersion = "18.09"; };
   nixpkgs.config = { allowBroken = true; allowUnfree = true; };
   programs = {
@@ -84,6 +86,7 @@
       };
     };
   };
+
   environment.systemPackages = with pkgs; [ tmux mc unzip ntfs3g python2Full xarchiver
                                             gnupg gnupg1compat gitFull cmake gnumake gcc8 
                                             firefox vlc neofetch wget python3Full unar
@@ -94,6 +97,7 @@
                                             snappy libopus nss xorg.libxkbfile xorg.libXScrnSaver
                                             harfbuzzFull gtk2-x11 gnome2.gtk gnome2.GConf flac
                                             xdg_utils ];
+
   services.xserver.enable = true;
   services.xserver.layout = "us,ru";
   services.xserver.xkbOptions = "grp:caps_toggle,grp_led:num"; # scroll,num,caps
@@ -119,6 +123,7 @@
   #services.locate.enable = true;
   #services.udisks2.enable = true;
   #services.ntp.enable = true;
+
   users.extraUsers.obliq = {
     isNormalUser = true;
     group = "users";
