@@ -95,7 +95,7 @@
                                             firefox vlc neofetch wget python3Full unar
                                             djview xpdf rsync ffmpeg-full python37Full
                                             chromium pavucontrol geany xfce.xfce4-xkb-plugin
-                                            xorg.xmodmap libxklavier
+                                            xorg.xmodmap libxklavier ];
 
   services.xserver.enable = true;
   services.xserver.xkbModel = "microsoft";
