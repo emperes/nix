@@ -29,7 +29,7 @@
     opengl.extraPackages = with pkgs; [ vaapiIntel libvdpau-va-gl vaapiVdpau ];
     #opengl.extraPackages32 = with pkgs.pkgsi686Linux; [ vaapiIntel libvdpau-va-gl vaapiVdpau ];
     opengl.s3tcSupport = true;
-    pulseaudio = { enable = true; package = pkgs.pulseaudioFull.override };
+    pulseaudio.enable = true;
 
   };
   i18n = {
