@@ -15,7 +15,6 @@
       };  
     };
   };
-
   time.timeZone = "Europe/Moscow";
   sound.enable = true;
   hardware = {
@@ -25,18 +24,16 @@
     #cpu.amd.updateMicrocode = true;
     opengl.enable = true;
     opengl.driSupport = true;
-    opengl.driSupport32Bit = true;
+    #opengl.driSupport32Bit = true;
     opengl.extraPackages = with pkgs; [ vaapiIntel libvdpau-va-gl vaapiVdpau ];
-    opengl.extraPackages32 = with pkgs.pkgsi686Linux; [ vaapiIntel libvdpau-va-gl vaapiVdpau ];
+    #opengl.extraPackages32 = with pkgs.pkgsi686Linux; [ vaapiIntel libvdpau-va-gl vaapiVdpau ];
     opengl.s3tcSupport = true;
     pulseaudio = { 
       enable = true; 
-      package = pkgs.pulseaudioFull.override { jackaudioSupport = true; }; 
-      extraConfig = ''load-module module-switch-on-connect'';
-      support32Bit = true;
+      package = pkgs.pulseaudioFull.override # { jackaudioSupport = true; }; 
+      #support32Bit = true;
     };  
   };
-
   i18n = {
     consoleFont = "UniCyr_8x16";
     consoleKeyMap = "ruwin_cplk-UTF-8";
@@ -47,7 +44,7 @@
                       "68A8E4" "FF5C8F" "53FDE9" "FCE8C3" ];
   };
   fonts = {
-    fonts = with pkgs; [ noto-fonts noto-fonts-emoji noto-fonts-extra noto-fonts-cjk ];
+    fonts = with pkgs; [ noto-fonts noto-fonts-emoji noto-fonts-extra noto-fonts-cjk liberation_ttf ];
     enableDefaultFonts = true;
     fontconfig.defaultFonts = {
       monospace = [ "Noto Mono" ];
@@ -55,7 +52,6 @@
       serif = [ "Noto Serif" ];
     };
   };
-
   networking = {
     hostName = "ollerus";
     networkmanager.enable = true;
@@ -66,7 +62,6 @@
     #proxy.default = "http://user:password@proxy:port/";
     #proxy.noProxy = "127.0.0.1,localhost,internal.domain";
   };
-
   system = { autoUpgrade.enable = true; stateVersion = "18.09"; };
   nixpkgs.config = { allowBroken = true; allowUnfree = true; };
   programs = {
@@ -91,17 +86,18 @@
     };
   };
   environment.systemPackages = with pkgs; [ tmux mc unzip ntfs3g python2Full xarchiver
-                                            gnupg gnupg1compat gitFull cmake gnumake gcc 
+                                            gnupg gnupg1compat gitFull cmake gnumake gcc8 
                                             firefox vlc neofetch wget python3Full unar
                                             djview xpdf rsync ffmpeg-full python37Full
                                             chromium pavucontrol geany xfce.xfce4-xkb-plugin
-                                            xorg.xmodmap libxklavier ];
-
+                                            fuse appimage-run xfce.xfce4-pulseaudio-plugin
+                                            xfce.xfce4-clipman-plugin bison flex openssl
+                                            snappy libopus nss xorg.libxkbfile xorg.libXScrnSaver
+                                            harfbuzzFull gtk2-x11 gnome2.gtk gnome2.GConf flac
+                                            xdg_utils ];
   services.xserver.enable = true;
-  services.xserver.xkbModel = "microsoft";
-  services.xserver.xkbVariant = "winkeys";
-  services.xserver.layout = "us,ru(winkeys)";
-  services.xserver.xkbOptions = "grp:caps_toggle";
+  services.xserver.layout = "us,ru";
+  services.xserver.xkbOptions = "grp:caps_toggle,grp_led:num"; # scroll,num,caps
   #services.xserver.libinput.enable = true;
   services.xserver.desktopManager = { xfce.enable = true; default = "xfce"; };
   services.xserver.displayManager.auto = { enable = true; user = "obliq"; };
@@ -124,7 +120,6 @@
   #services.locate.enable = true;
   #services.udisks2.enable = true;
   #services.ntp.enable = true;
-  
   users.extraUsers.obliq = {
     isNormalUser = true;
     group = "users";
