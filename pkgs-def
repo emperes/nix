@@ -1,0 +1,16 @@
+unit-dbus.service
+libXrandr-1.5.1
+command-not-found
+nixos-enter
+kbd-2.0.4
+udisks-2.8.0
+gzip-1.9-man
+libtirpc-1.1.4
+perl5.28.0-HTTP-Cookies-6.04
+fontconfig-2.12.6-bin
+pcsclite-1.8.23
+unit-systemd-update-utmp.service
+bzip2-1.0.6.0.1-bin
+penultimate-0.3.5
+keyutils-1.5.10-lib
+firewall-start
