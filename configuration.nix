@@ -75,10 +75,8 @@
     #  enableSshSupport = true;
     #};
     #mtr.enable = true;
-    #rootston.enable = true;
-    #sway.enable = true;
     #java.enable = true;
-    adb.enable = true;
+    #adb.enable = true;
     zsh = {
       enable = true;
       enableCompletion = true;
@@ -96,11 +94,8 @@
                                             gnupg gnupg1compat gitFull cmake gnumake gcc 
                                             firefox vlc neofetch wget python3Full unar
                                             djview xpdf rsync ffmpeg-full python37Full
-                                            chromium pavucontrol geany
-                                            
-                                            #XFCE
-                                            xfce4-13.xfce4-panel xfce4-13.xfdesktop 
-                                            xfce4-13.xfce4-notifyd xfce4-13.xfce4-xkb-plugin];
+                                            chromium pavucontrol geany xfce.xfce4-xkb-plugin
+                                            xorg.xmodmap libxklavier
 
   services.xserver.enable = true;
   services.xserver.xkbModel = "microsoft";
@@ -108,11 +103,7 @@
   services.xserver.layout = "us,ru(winkeys)";
   services.xserver.xkbOptions = "grp:caps_toggle";
   #services.xserver.libinput.enable = true;
-  services.xserver.desktopManager = { xfce.enable = true; default = "xfce";
-                                      xfce.noDesktop = true;
-                                      xfce.thunarPlugins = [ pkgs.xfce.thunar-archive-plugin
-                                                             pkgs.xfce4-13.thunar-volman 
-                                                             pkgs.xfce.thunar-dropbox-plugin ]; };
+  services.xserver.desktopManager = { xfce.enable = true; default = "xfce"; };
   services.xserver.displayManager.auto = { enable = true; user = "obliq"; };
   services.xserver.videoDrivers = [ "intel" ];
   services.xserver.synaptics.enable = true;
@@ -133,21 +124,12 @@
   #services.locate.enable = true;
   #services.udisks2.enable = true;
   #services.ntp.enable = true;
-  #services.nixosManual.showManual = true;
   
   users.extraUsers.obliq = {
     isNormalUser = true;
-    name = "obliq";
     group = "users";
     uid = 1000;
     shell = pkgs.zsh;
-    extraGroups = [
-      "dialout" "plugdev" "audio" 
-      "video" "disk" "libvirtd" "nixbld"
-      "networkmanager" "systemd-journal" 
-      "wheel" "adb" "power" "vboxusers" 
-    ];
-    createHome = true;
-    home = "/home/obliq";
+    extraGroups = [ "wheel" ];
   };
 }
