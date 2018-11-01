@@ -95,7 +95,7 @@
                                             fuse appimage-run xfce.xfce4-pulseaudio-plugin
                                             xfce.xfce4-clipman-plugin bison flex openssl
                                             snappy libopus nss xorg.libxkbfile xorg.libXScrnSaver
-                                            harfbuzzFull gtk2-x11 gnome2.gtk gnome2.GConf flac
+                                            harfbuzzFull gtk2-x11 gnome2.gtk flac
                                             xdg_utils ];
 
   services.xserver.enable = true;
@@ -119,6 +119,7 @@
   #services.printing.enable = true; # CUPS
   #services.openssh.enable = true;
   services.dbus.enable = true;
+  services.dbus.packages = [ pkgs.gnome.GConf ];
   #services.cron.enable = true;
   #services.locate.enable = true;
   #services.udisks2.enable = true;
