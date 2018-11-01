@@ -30,9 +30,8 @@
     opengl.s3tcSupport = true;
     pulseaudio = { 
       enable = true; 
-      package = pkgs.pulseaudioFull.override # { jackaudioSupport = true; }; 
-      #support32Bit = true;
-    };  
+      package = pkgs.pulseaudioFull.override
+    };
   };
   i18n = {
     consoleFont = "UniCyr_8x16";
