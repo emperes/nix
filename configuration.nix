@@ -1,6 +1,7 @@
 { config, pkgs, ... }:
 {
   imports = [ ./hardware-configuration.nix ];
+  #boot.kernelModules = [ "kvm-intel" "fuse" ];
   boot = {
     kernelPackages = pkgs.linuxPackages_latest;
     loader = {
