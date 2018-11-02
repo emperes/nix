@@ -73,6 +73,8 @@
     allowUnfree = true;
     chromium.enablePepperFlash = true;
     chromium.enablePepperPDF = true;
+    chromium.jre = true;
+    chromium.enableAdobeFlash = true;
     firefox.enableAdobeFlash = true;
     firefox.enablePepperFlash = true;
     firefox.jre = true;
