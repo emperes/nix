@@ -3,7 +3,7 @@
   imports = [ ./hardware-configuration.nix ];
   boot = {
     kernelModules = [ "kvm-intel" "fuse" "reiser4" ];
-    kernelPackages = pkgs.linux_testing;
+    kernelPackages = pkgs.linuxPackages_testing;
     supportedFilesystems = [ "ntfs-3g" "reiser4" ];
     loader = {
       #efi.efiSysMountPoint = "/boot/efi";
