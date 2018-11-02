@@ -4,6 +4,7 @@
   #boot.kernelModules = [ "kvm-intel" "fuse" ];
   boot = {
     kernelPackages = pkgs.linuxPackages_latest;
+    supportedFilesystems = [ "ntfs-3g" ];
     loader = {
       #efi.efiSysMountPoint = "/boot/efi";
       grub = {
@@ -37,6 +38,7 @@
     consoleFont = "UniCyr_8x16";
     consoleKeyMap = "ruwin_cplk-UTF-8";
     defaultLocale = "ru_RU.UTF-8";
+    supportedLocales = [ "ru_RU.KOI8-R" "ru_RU/ISO-8859-5" "en_US.UTF-8" ];
     consoleColors = [ "1C1B19" "EF2F27" "519F50" "FBB829"
                       "2C78BF" "E02C6D" "0AAEB3" "918175"
                       "2D2C29" "F75341" "98BC37" "FED06E"
@@ -97,7 +99,7 @@
                                             xfce.xfce4-clipman-plugin bison flex openssl
                                             snappy libopus nss xorg.libxkbfile xorg.libXScrnSaver
                                             harfbuzzFull gtk2-x11 gnome2.gtk flac
-                                            xdg_utils ];
+                                            xdg_utils gparted acpi bc ];
 
   services.xserver.enable = true;
   services.xserver.layout = "us,ru";
@@ -125,6 +127,7 @@
   #services.locate.enable = true;
   #services.udisks2.enable = true;
   #services.ntp.enable = true;
+  services.tor.enable = true;
 
   users.extraUsers.obliq = {
     isNormalUser = true;
