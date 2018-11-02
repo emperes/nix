@@ -17,7 +17,8 @@
       };  
     };
   };
-
+  
+  powerManagement.cpuFreqGovernor = "performance";
   time.timeZone = "Europe/Moscow";
   sound.enable = true;
   hardware = {
