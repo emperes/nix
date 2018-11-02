@@ -117,7 +117,7 @@
                                             xfe libreoffice-fresh skype plano-theme numix-gtk-theme
                                             greybird faba-icon-theme numix-cursor-theme
                                             virtualboxWithExtpack linuxPackages.virtualboxGuestAdditions
-                                            linuxPackages.virtualbox reiser4progs libaal ];
+                                            linuxPackages.virtualbox reiser4progs libaal aqemu ];
   services.xserver.enable = true;
   services.xserver.layout = "us,ru";
   services.xserver.xkbOptions = "grp:caps_toggle,grp_led:num"; # scroll,num,caps
