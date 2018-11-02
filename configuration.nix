@@ -3,7 +3,7 @@
   imports = [ ./hardware-configuration.nix ];
   boot = {
     kernelModules = [ "kvm-intel" "fuse" "reiser4" ];
-    kernelPackages = pkgs.linuxPackages_testing;
+    kernelPackages = pkgs.linuxPackages_testing; #linuxPackages_latest_xen_dom0_hardened.nvidiabl
     supportedFilesystems = [ "ntfs-3g" "reiser4" ];
     loader = {
       #efi.efiSysMountPoint = "/boot/efi";
@@ -41,7 +41,6 @@
     consoleFont = "UniCyr_8x16";
     consoleKeyMap = "ruwin_cplk-UTF-8";
     defaultLocale = "ru_RU.UTF-8";
-    supportedLocales = [ "ru_RU.KOI8-R/KOI8-R" "ru_RU/ISO-8859-5" "en_US.UTF-8/UTF-8" ];
     consoleColors = [ "1C1B19" "EF2F27" "519F50" "FBB829"
                       "2C78BF" "E02C6D" "0AAEB3" "918175"
                       "2D2C29" "F75341" "98BC37" "FED06E"
@@ -73,26 +72,11 @@
     autoUpgrade.channel = https://nixos.org/channels/nixos-unstable;
   };
   nix = { gc.automatic = true; autoOptimiseStore = true; useSandbox = true; };
-  nixpkgs.config = { 
-    allowBroken = true;
-    allowUnfree = true;
-    virtualbox.host.enableExtensionPack = true;
-    virtualbox.host.addNetworkInterface = true;
-    firefox.enableAdobeFlash = true;
-    firefox.enablePepperFlash = true;
-    firefox.ffmpegSupport = true;
-  };
+  nixpkgs.config = { allowBroken = true; allowUnfree = true; };
   programs = {
     java.enable = true;
     mtr.enable = true;
     adb.enable = true;
-    chromium = { 
-      extensions = [ "cjpalhdlnbpafiamejdnhcphjbkeiagm"
-                     "bihmplhobchoageeokmgbdihknkjbknd" ];
-      homepageLocation = "https://yandex.ru";
-      defaultSearchProviderSearchURL = "yandex.ru";
-      defaultSearchProviderSuggestURL = "yandex.ru";
-    };
     zsh = {
       enable = true;
       enableCompletion = true;
@@ -111,7 +95,7 @@
                                             firefox vlc neofetch wget python3Full unar
                                             djview xpdf rsync ffmpeg-full python37Full
                                             chromium pavucontrol geany xfce.xfce4-xkb-plugin
-                                            fuse appimage-run xfce.xfce4-pulseaudio-plugin
+                                            fuse appimage-run xfe libreoffice-fresh
                                             xfce.xfce4-clipman-plugin bison flex openssl
                                             snappy libopus nss xorg.libxkbfile xorg.libXScrnSaver
                                             harfbuzzFull gtk2-x11 gnome2.gtk flac arc-icon-theme
@@ -119,7 +103,7 @@
                                             imagemagick speedcrunch links paprefs pasystray tor 
                                             torsocks torbrowser playonlinux wineFull winetricks
                                             audacity gnome3.gnome-sound-recorder gnome3.cheese 
-                                            xfe libreoffice-fresh skype plano-theme numix-gtk-theme
+                                            skype plano-theme numix-gtk-theme
                                             greybird faba-icon-theme numix-cursor-theme
                                             reiser4progs libaal aqemu ];
   #virtualboxWithExtpack linuxPackages.virtualboxGuestAdditions linuxPackages.virtualbox
