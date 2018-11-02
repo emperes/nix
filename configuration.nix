@@ -113,7 +113,7 @@
                                             snappy libopus nss xorg.libxkbfile xorg.libXScrnSaver
                                             harfbuzzFull gtk2-x11 gnome2.gtk flac
                                             xdg_utils gparted acpi bc acpitool adobe-reader htop
-                                            imagemagick speedcrunch];
+                                            imagemagick speedcrunch links paprefs pasystray];
 
   services.xserver.enable = true;
   services.xserver.layout = "us,ru";
