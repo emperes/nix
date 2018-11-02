@@ -1,9 +1,9 @@
 { config, pkgs, ... }:
 {
   imports = [ ./hardware-configuration.nix ];
-  boot.kernelModules = [ "kvm-intel" "fuse" "reiser4" ];
   boot = {
-    kernelPackages = with pkgs; [ linuxPackages_latest ];
+    kernelModules = [ "kvm-intel" "fuse" "reiser4" ];
+    kernelPackages = pkgs.linuxPackages_latest;
     supportedFilesystems = [ "ntfs-3g" "reiser4"];
     loader = {
       #efi.efiSysMountPoint = "/boot/efi";
@@ -17,8 +17,7 @@
       };  
     };
   };
-  
-  powerManagement.cpuFreqGovernor = "performance";
+  #powerManagement.cpuFreqGovernor = "performance";
   time.timeZone = "Europe/Moscow";
   sound.enable = true;
   hardware = {
@@ -35,9 +34,7 @@
     opengl.s3tcSupport = true;
     pulseaudio.enable = true;
     pulseaudio.support32Bit = true;
-    pulseaudio.package = pulseaudioFull;
     pulseaudio.systemWide = true;
-
   };
   i18n = {
     consoleFont = "UniCyr_8x16";
@@ -49,7 +46,6 @@
                       "2D2C29" "F75341" "98BC37" "FED06E"
                       "68A8E4" "FF5C8F" "53FDE9" "FCE8C3" ];
   };
-
   fonts = {
     fonts = with pkgs; [ noto-fonts noto-fonts-emoji noto-fonts-extra noto-fonts-cjk liberation_ttf ];
     enableDefaultFonts = true;
@@ -59,7 +55,6 @@
       serif = [ "Noto Serif" ];
     };
   };
-
   networking = {
     hostName = "ollerus";
     networkmanager.enable = true;
@@ -70,39 +65,30 @@
     #proxy.default = "http://user:password@proxy:port/";
     #proxy.noProxy = "127.0.0.1,localhost,internal.domain";
   };
-  
-  virtualisation.virtualbox.host.enable = true;
-  nixpkgs.config.virtualbox.host.enableExtensionPack = true;
-  nixpkgs.config.virtualbox.host.addNetworkInterface = true;
-  virtualisation.libvirtd.enable = true;
-
+  virtualisation = { virtualbox.host.enable = true; libvirtd.enable = true; };
   system = { autoUpgrade.enable = true; stateVersion = "18.09"; };
   nix.gc.automatic = true; 
   nixpkgs.config = { 
     allowBroken = true;
     allowUnfree = true;
-    chromium.enablePepperFlash = true;
-    chromium.enablePepperPDF = true;
-    chromium.jre = true;
-    chromium.enableAdobeFlash = true;
+    virtualbox.host.enableExtensionPack = true;
+    virtualbox.host.addNetworkInterface = true;
     firefox.enableAdobeFlash = true;
     firefox.enablePepperFlash = true;
     firefox.jre = true;
     firefox.ffmpegSupport = true;
   };
   programs = {
-    gnupg.agent = {
-      enable = true;
-      enableSshSupport = true;
-    };
     mtr.enable = true;
     java.enable = true;
     adb.enable = true;
-    chromium.extensions = [ "cjpalhdlnbpafiamejdnhcphjbkeiagm"
-                            "bihmplhobchoageeokmgbdihknkjbknd" ];
-    homepageLocation = "https://yandex.ru";
-    defaultSearchProviderSearchURL = "yandex.ru";
-    defaultSearchProviderSuggestURL = "yandex.ru";
+    chromium = { 
+      extensions = [ "cjpalhdlnbpafiamejdnhcphjbkeiagm"
+                     "bihmplhobchoageeokmgbdihknkjbknd" ];
+      homepageLocation = "https://yandex.ru";
+      defaultSearchProviderSearchURL = "yandex.ru";
+      defaultSearchProviderSuggestURL = "yandex.ru";
+    };
     zsh = {
       enable = true;
       enableCompletion = true;
@@ -116,7 +102,6 @@
       };
     };
   };
-
   environment.systemPackages = with pkgs; [ tmux mc unzip ntfs3g python2Full xarchiver
                                             gnupg gnupg1compat gitFull cmake gnumake gcc8 
                                             firefox vlc neofetch wget python3Full unar
@@ -128,11 +113,12 @@
                                             harfbuzzFull gtk2-x11 gnome2.gtk flac arc-icon-theme
                                             xdg_utils gparted acpi bc acpitool adobe-reader htop
                                             imagemagick speedcrunch links paprefs pasystray tor 
-                                            torsocks torbrowser playonlinux wineFul winetricks
+                                            torsocks torbrowser playonlinux wineFull winetricks
                                             audacity gnome3.gnome-sound-recorder gnome3.cheese 
-                                            xfe libreoffice-fresh skype plano-theme	numix-gtk-theme
-                                            greybird faba-icon-theme numix-cursor-theme ];
-
+                                            xfe libreoffice-fresh skype plano-theme numix-gtk-theme
+                                            greybird faba-icon-theme numix-cursor-theme
+                                            virtualboxWithExtpack linuxPackages.virtualboxGuestAdditions
+                                            linuxPackages.virtualbox ];
   services.xserver.enable = true;
   services.xserver.layout = "us,ru";
   services.xserver.xkbOptions = "grp:caps_toggle,grp_led:num"; # scroll,num,caps
@@ -152,19 +138,17 @@
   services.tlp.enable = true;
   services.illum.enable = true;
   services.printing.enable = true; # CUPS
-  services.printing.drivers = with pkgs; [ hplipWithPlugin pson-escpr
+  services.printing.drivers = with pkgs; [ hplipWithPlugin epson-escpr
                                            gutenprint splix cups-bjnp
                                            gutenprintBin samsungUnifiedLinuxDriver
-                                           cups_pdf_filter ghostscript additionalBackends
-                                           ];
+                                           ghostscript ];
   services.openssh.enable = true;
-  services.dbus = { enable = true; dbus.packages = with pkgs; [ gnome.GConf ]; };
+  services.dbus = { enable = true; packages = with pkgs; [ gnome2.GConf ]; };
   services.cron.enable = true;
   services.locate.enable = true;
   services.udisks2.enable = true;
   services.ntp.enable = true;
   services.tor.enable = true;
-
   users.extraGroups.pulse-access.members = [ "nick" "other" "guest" "root" "users" "wheel" ];
   users.extraGroups.audio.members = [ "nick" "other" "guest" "root" "users" "wheel" ];
   users.extraUsers.obliq = {
