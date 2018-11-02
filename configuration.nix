@@ -1,10 +1,10 @@
 { config, pkgs, ... }:
 {
   imports = [ ./hardware-configuration.nix ];
-  #boot.kernelModules = [ "kvm-intel" "fuse" ];
+  #boot.kernelModules = [ "kvm-intel" "fuse" "reiser4" ];
   boot = {
     kernelPackages = pkgs.linuxPackages_latest;
-    supportedFilesystems = [ "ntfs-3g" ];
+    supportedFilesystems = [ "ntfs-3g" "reiser4"];
     loader = {
       #efi.efiSysMountPoint = "/boot/efi";
       grub = {
@@ -113,7 +113,8 @@
                                             snappy libopus nss xorg.libxkbfile xorg.libXScrnSaver
                                             harfbuzzFull gtk2-x11 gnome2.gtk flac
                                             xdg_utils gparted acpi bc acpitool adobe-reader htop
-                                            imagemagick speedcrunch links paprefs pasystray];
+                                            imagemagick speedcrunch links paprefs pasystray tor 
+                                            torsocks torbrowser ];
 
   services.xserver.enable = true;
   services.xserver.layout = "us,ru";
