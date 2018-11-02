@@ -3,7 +3,7 @@
   imports = [ ./hardware-configuration.nix ];
   #boot.kernelModules = [ "kvm-intel" "fuse" "reiser4" ];
   boot = {
-    kernelPackages = pkgs.linuxPackages_latest;
+    kernelPackages = with pkgs; [ linuxPackages_latest ];
     supportedFilesystems = [ "ntfs-3g" "reiser4"];
     loader = {
       #efi.efiSysMountPoint = "/boot/efi";
@@ -157,7 +157,7 @@
                                            cups_pdf_filter ghostscript additionalBackends
                                            ];
   services.openssh.enable = true;
-  services.dbus = { enable = true; dbus.packages = [ pkgs.gnome.GConf ]; };
+  services.dbus = { enable = true; dbus.packages = with pkgs; [ gnome.GConf ]; };
   services.cron.enable = true;
   services.locate.enable = true;
   services.udisks2.enable = true;
