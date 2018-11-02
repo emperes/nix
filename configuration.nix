@@ -125,12 +125,13 @@
                                             fuse appimage-run xfce.xfce4-pulseaudio-plugin
                                             xfce.xfce4-clipman-plugin bison flex openssl
                                             snappy libopus nss xorg.libxkbfile xorg.libXScrnSaver
-                                            harfbuzzFull gtk2-x11 gnome2.gtk flac
+                                            harfbuzzFull gtk2-x11 gnome2.gtk flac arc-icon-theme
                                             xdg_utils gparted acpi bc acpitool adobe-reader htop
                                             imagemagick speedcrunch links paprefs pasystray tor 
                                             torsocks torbrowser playonlinux wineFul winetricks
                                             audacity gnome3.gnome-sound-recorder gnome3.cheese 
-                                            xfe libreoffice-fresh skype ];
+                                            xfe libreoffice-fresh skype plano-theme	numix-gtk-theme
+                                            greybird faba-icon-theme numix-cursor-theme ];
 
   services.xserver.enable = true;
   services.xserver.layout = "us,ru";
