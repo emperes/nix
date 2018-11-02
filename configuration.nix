@@ -32,6 +32,7 @@
     #opengl.extraPackages32 = with pkgs.pkgsi686Linux; [ vaapiIntel libvdpau-va-gl vaapiVdpau ];
     opengl.s3tcSupport = true;
     pulseaudio.enable = true;
+    pulseaudio.package = pulseaudioFull;
 
   };
   i18n = {
@@ -67,7 +68,15 @@
   };
 
   system = { autoUpgrade.enable = true; stateVersion = "18.09"; };
-  nixpkgs.config = { allowBroken = true; allowUnfree = true; };
+  nixpkgs.config = { 
+    allowBroken = true;
+    allowUnfree = true;
+    chromium.enablePepperFlash = true;
+    chromium.enablePepperPDF = true;
+    firefox.enableAdobeFlash = true;
+    firefox.enablePepperFlash = true;
+    firefox.jre = true;
+  };
   programs = {
     #gnupg.agent = {
     #  enable = true;
@@ -76,6 +85,8 @@
     #mtr.enable = true;
     #java.enable = true;
     #adb.enable = true;
+    chromium.extensions = [ "cjpalhdlnbpafiamejdnhcphjbkeiagm" # uBlock Origin 
+                            "bihmplhobchoageeokmgbdihknkjbknd" # Touch VPN];
     zsh = {
       enable = true;
       enableCompletion = true;
@@ -99,7 +110,8 @@
                                             xfce.xfce4-clipman-plugin bison flex openssl
                                             snappy libopus nss xorg.libxkbfile xorg.libXScrnSaver
                                             harfbuzzFull gtk2-x11 gnome2.gtk flac
-                                            xdg_utils gparted acpi bc ];
+                                            xdg_utils gparted acpi bc acpitool adobe-reader htop
+                                            imagemagick speedcrunch];
 
   services.xserver.enable = true;
   services.xserver.layout = "us,ru";
