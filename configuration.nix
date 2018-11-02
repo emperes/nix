@@ -33,6 +33,7 @@
     opengl.s3tcSupport = true;
     pulseaudio.enable = true;
     pulseaudio.package = pulseaudioFull;
+    pulseaudio.systemWide = true;
 
   };
   i18n = {
@@ -143,6 +144,8 @@
   #services.ntp.enable = true;
   services.tor.enable = true;
 
+  users.extraGroups.pulse-access.members = [ "nick" "other" "guest" "root" "users" "wheel" ];
+  users.extraGroups.audio.members = [ "nick" "other" "guest" "root" "users" "wheel" ];
   users.extraUsers.obliq = {
     isNormalUser = true;
     group = "users";
