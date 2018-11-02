@@ -25,6 +25,7 @@
     enableRedistributableFirmware = true;
     cpu.intel.updateMicrocode = true;
     #cpu.amd.updateMicrocode = true;
+    enableAllFirmware = true;
     opengl.enable = true;
     opengl.driSupport = true;
     opengl.driSupport32Bit = true;
@@ -68,8 +69,15 @@
     #proxy.default = "http://user:password@proxy:port/";
     #proxy.noProxy = "127.0.0.1,localhost,internal.domain";
   };
+  
+  
+  virtualisation.virtualbox.host.enable = true;
+  nixpkgs.config.virtualbox.host.enableExtensionPack = true;
+  nixpkgs.config.virtualbox.host.addNetworkInterface = true;
+  virtualisation.libvirtd.enable = true;
 
   system = { autoUpgrade.enable = true; stateVersion = "18.09"; };
+  nix.gc.automatic = true; 
   nixpkgs.config = { 
     allowBroken = true;
     allowUnfree = true;
@@ -90,6 +98,9 @@
     #java.enable = true;
     #adb.enable = true;
     chromium.extensions = [ "cjpalhdlnbpafiamejdnhcphjbkeiagm" "bihmplhobchoageeokmgbdihknkjbknd" ];
+    homepageLocation = "https://yandex.ru";
+    defaultSearchProviderSearchURL = "yandex.ru";
+    defaultSearchProviderSuggestURL = "yandex.ru";
     zsh = {
       enable = true;
       enableCompletion = true;
@@ -117,7 +128,7 @@
                                             imagemagick speedcrunch links paprefs pasystray tor 
                                             torsocks torbrowser playonlinux wineFul winetricks
                                             audacity gnome3.gnome-sound-recorder gnome3.cheese 
-                                            xfe];
+                                            xfe libreoffice-fresh ];
 
   services.xserver.enable = true;
   services.xserver.layout = "us,ru";
@@ -154,6 +165,6 @@
     group = "users";
     uid = 1000;
     shell = pkgs.zsh;
-    extraGroups = [ "audio" "docker" "pulse" "video" "wheel" "vboxusers" ];
+    extraGroups = [ "audio" "docker" "pulse" "video" "wheel" "vboxusers" "libvirtd" "virtualisation" "host" ];
   };
 }
