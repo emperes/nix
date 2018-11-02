@@ -27,11 +27,12 @@
     #cpu.amd.updateMicrocode = true;
     opengl.enable = true;
     opengl.driSupport = true;
-    #opengl.driSupport32Bit = true;
+    opengl.driSupport32Bit = true;
     opengl.extraPackages = with pkgs; [ vaapiIntel libvdpau-va-gl vaapiVdpau ];
-    #opengl.extraPackages32 = with pkgs.pkgsi686Linux; [ vaapiIntel libvdpau-va-gl vaapiVdpau ];
+    opengl.extraPackages32 = with pkgs.pkgsi686Linux; [ vaapiIntel libvdpau-va-gl vaapiVdpau ];
     opengl.s3tcSupport = true;
     pulseaudio.enable = true;
+    pulseaudio.support32Bit = true;
     pulseaudio.package = pulseaudioFull;
     pulseaudio.systemWide = true;
 
@@ -114,7 +115,9 @@
                                             harfbuzzFull gtk2-x11 gnome2.gtk flac
                                             xdg_utils gparted acpi bc acpitool adobe-reader htop
                                             imagemagick speedcrunch links paprefs pasystray tor 
-                                            torsocks torbrowser ];
+                                            torsocks torbrowser playonlinux wineFul winetricks
+                                            audacity gnome3.gnome-sound-recorder gnome3.cheese 
+                                            xfe];
 
   services.xserver.enable = true;
   services.xserver.layout = "us,ru";
