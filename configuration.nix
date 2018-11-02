@@ -40,7 +40,7 @@
     consoleFont = "UniCyr_8x16";
     consoleKeyMap = "ruwin_cplk-UTF-8";
     defaultLocale = "ru_RU.UTF-8";
-    supportedLocales = [ "ru_RU.KOI8-R" "ru_RU/ISO-8859-5" "en_US.UTF-8" ];
+    supportedLocales = [ "ru_RU.KOI8-R/KOI8-R" "ru_RU/ISO-8859-5" "en_US.UTF-8/UTF-8" ];
     consoleColors = [ "1C1B19" "EF2F27" "519F50" "FBB829"
                       "2C78BF" "E02C6D" "0AAEB3" "918175"
                       "2D2C29" "F75341" "98BC37" "FED06E"
@@ -75,12 +75,11 @@
     virtualbox.host.addNetworkInterface = true;
     firefox.enableAdobeFlash = true;
     firefox.enablePepperFlash = true;
-    firefox.jre = true;
     firefox.ffmpegSupport = true;
   };
   programs = {
-    mtr.enable = true;
     java.enable = true;
+    mtr.enable = true;
     adb.enable = true;
     chromium = { 
       extensions = [ "cjpalhdlnbpafiamejdnhcphjbkeiagm"
@@ -118,7 +117,7 @@
                                             xfe libreoffice-fresh skype plano-theme numix-gtk-theme
                                             greybird faba-icon-theme numix-cursor-theme
                                             virtualboxWithExtpack linuxPackages.virtualboxGuestAdditions
-                                            linuxPackages.virtualbox ];
+                                            linuxPackages.virtualbox reiser4progs libaal ];
   services.xserver.enable = true;
   services.xserver.layout = "us,ru";
   services.xserver.xkbOptions = "grp:caps_toggle,grp_led:num"; # scroll,num,caps
