@@ -151,6 +151,6 @@
     group = "users";
     uid = 1000;
     shell = pkgs.zsh;
-    extraGroups = [ "wheel" ];
+    extraGroups = [ "audio" "docker" "pulse" "video" "wheel" "vboxusers" ];
   };
 }
