@@ -1,7 +1,7 @@
 { config, pkgs, ... }:
 {
   imports = [ ./hardware-configuration.nix ];
-  #boot.kernelModules = [ "kvm-intel" "fuse" "reiser4" ];
+  boot.kernelModules = [ "kvm-intel" "fuse" "reiser4" ];
   boot = {
     kernelPackages = with pkgs; [ linuxPackages_latest ];
     supportedFilesystems = [ "ntfs-3g" "reiser4"];
@@ -22,7 +22,7 @@
   time.timeZone = "Europe/Moscow";
   sound.enable = true;
   hardware = {
-    #bluetooth.enable = true;
+    bluetooth.enable = true;
     enableRedistributableFirmware = true;
     cpu.intel.updateMicrocode = true;
     #cpu.amd.updateMicrocode = true;
@@ -91,13 +91,13 @@
     firefox.ffmpegSupport = true;
   };
   programs = {
-    #gnupg.agent = {
-    #  enable = true;
-    #  enableSshSupport = true;
-    #};
-    #mtr.enable = true;
-    #java.enable = true;
-    #adb.enable = true;
+    gnupg.agent = {
+      enable = true;
+      enableSshSupport = true;
+    };
+    mtr.enable = true;
+    java.enable = true;
+    adb.enable = true;
     chromium.extensions = [ "cjpalhdlnbpafiamejdnhcphjbkeiagm"
                             "bihmplhobchoageeokmgbdihknkjbknd" ];
     homepageLocation = "https://yandex.ru";
@@ -171,6 +171,6 @@
     group = "users";
     uid = 1000;
     shell = pkgs.zsh;
-    extraGroups = [ "audio" "docker" "pulse" "video" "wheel" "vboxusers" "libvirtd" "virtualisation" "host" ];
+    extraGroups = [ "audio" "adb" "adbuser" "docker" "pulse" "video" "wheel" "vboxusers" "libvirtd" "virtualisation" "host" ];
   };
 }
