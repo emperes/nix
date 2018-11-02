@@ -71,7 +71,6 @@
     #proxy.noProxy = "127.0.0.1,localhost,internal.domain";
   };
   
-  
   virtualisation.virtualbox.host.enable = true;
   nixpkgs.config.virtualbox.host.enableExtensionPack = true;
   nixpkgs.config.virtualbox.host.addNetworkInterface = true;
@@ -89,6 +88,7 @@
     firefox.enableAdobeFlash = true;
     firefox.enablePepperFlash = true;
     firefox.jre = true;
+    firefox.ffmpegSupport = true;
   };
   programs = {
     #gnupg.agent = {
@@ -98,7 +98,8 @@
     #mtr.enable = true;
     #java.enable = true;
     #adb.enable = true;
-    chromium.extensions = [ "cjpalhdlnbpafiamejdnhcphjbkeiagm" "bihmplhobchoageeokmgbdihknkjbknd" ];
+    chromium.extensions = [ "cjpalhdlnbpafiamejdnhcphjbkeiagm"
+                            "bihmplhobchoageeokmgbdihknkjbknd" ];
     homepageLocation = "https://yandex.ru";
     defaultSearchProviderSearchURL = "yandex.ru";
     defaultSearchProviderSuggestURL = "yandex.ru";
@@ -129,7 +130,7 @@
                                             imagemagick speedcrunch links paprefs pasystray tor 
                                             torsocks torbrowser playonlinux wineFul winetricks
                                             audacity gnome3.gnome-sound-recorder gnome3.cheese 
-                                            xfe libreoffice-fresh ];
+                                            xfe libreoffice-fresh skype ];
 
   services.xserver.enable = true;
   services.xserver.layout = "us,ru";
@@ -143,20 +144,24 @@
   sound.mediaKeys.enable = true;
   services.compton.enable = true;
   services.compton.vSync = "opengl";
-  #services.compton.shadow = true;
-  #services.compton.menuOpacity = "0.9";
-  #services.compton.shadowOpacity = "0.3";
+  services.compton.shadow = true;
+  services.compton.menuOpacity = "0.9";
+  services.compton.shadowOpacity = "0.3";
   services.acpid.enable = true;
   services.tlp.enable = true;
   services.illum.enable = true;
-  #services.printing.enable = true; # CUPS
-  #services.openssh.enable = true;
-  services.dbus.enable = true;
-  services.dbus.packages = [ pkgs.gnome.GConf ];
-  #services.cron.enable = true;
-  #services.locate.enable = true;
-  #services.udisks2.enable = true;
-  #services.ntp.enable = true;
+  services.printing.enable = true; # CUPS
+  services.printing.drivers = with pkgs; [ hplipWithPlugin pson-escpr
+                                           gutenprint splix cups-bjnp
+                                           gutenprintBin samsungUnifiedLinuxDriver
+                                           cups_pdf_filter ghostscript additionalBackends
+                                           ];
+  services.openssh.enable = true;
+  services.dbus = { enable = true; dbus.packages = [ pkgs.gnome.GConf ]; };
+  services.cron.enable = true;
+  services.locate.enable = true;
+  services.udisks2.enable = true;
+  services.ntp.enable = true;
   services.tor.enable = true;
 
   users.extraGroups.pulse-access.members = [ "nick" "other" "guest" "root" "users" "wheel" ];
