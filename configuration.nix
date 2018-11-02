@@ -3,7 +3,7 @@
   imports = [ ./hardware-configuration.nix ];
   boot = {
     kernelModules = [ "kvm-intel" "fuse" "reiser4" ];
-    kernelPackages = pkgs.linuxPackages_latest;
+    kernelPackages = pkgs.linux_testing;
     supportedFilesystems = [ "ntfs-3g" "reiser4" ];
     loader = {
       #efi.efiSysMountPoint = "/boot/efi";
@@ -17,6 +17,7 @@
       };  
     };
   };
+  zramSwap = { enable = true; memoryPercent = 40; };
   #powerManagement.cpuFreqGovernor = "performance";
   time.timeZone = "Europe/Moscow";
   sound.enable = true;
@@ -66,8 +67,12 @@
     #proxy.noProxy = "127.0.0.1,localhost,internal.domain";
   };
   virtualisation = { virtualbox.host.enable = true; libvirtd.enable = true; };
-  system = { autoUpgrade.enable = true; stateVersion = "18.09"; };
-  nix.gc.automatic = true; 
+  system = { 
+    autoUpgrade.enable = true;
+    stateVersion = "unstable";
+    autoUpgrade.channel = https://nixos.org/channels/nixos-unstable;
+  };
+  nix = { gc.automatic = true; autoOptimiseStore = true; useSandbox = true; };
   nixpkgs.config = { 
     allowBroken = true;
     allowUnfree = true;
@@ -116,8 +121,8 @@
                                             audacity gnome3.gnome-sound-recorder gnome3.cheese 
                                             xfe libreoffice-fresh skype plano-theme numix-gtk-theme
                                             greybird faba-icon-theme numix-cursor-theme
-                                            virtualboxWithExtpack linuxPackages.virtualboxGuestAdditions
-                                            linuxPackages.virtualbox reiser4progs libaal aqemu ];
+                                            reiser4progs libaal aqemu ];
+  #virtualboxWithExtpack linuxPackages.virtualboxGuestAdditions linuxPackages.virtualbox
   services.xserver.enable = true;
   services.xserver.layout = "us,ru";
   services.xserver.xkbOptions = "grp:caps_toggle,grp_led:num"; # scroll,num,caps
