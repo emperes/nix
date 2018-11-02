@@ -88,7 +88,7 @@
     #java.enable = true;
     #adb.enable = true;
     chromium.extensions = [ "cjpalhdlnbpafiamejdnhcphjbkeiagm" # uBlock Origin 
-                            "bihmplhobchoageeokmgbdihknkjbknd" # Touch VPN];
+                            "bihmplhobchoageeokmgbdihknkjbknd" # Touch VPN ];
     zsh = {
       enable = true;
       enableCompletion = true;
