@@ -171,6 +171,9 @@
     group = "users";
     uid = 1000;
     shell = pkgs.zsh;
-    extraGroups = [ "audio" "adb" "adbuser" "docker" "pulse" "video" "wheel" "vboxusers" "libvirtd" "virtualisation" "host" ];
+    extraGroups = [ "audio" "adb" "adbuser" "docker"
+                    "pulse" "video" "wheel" "vboxusers"
+                    "libvirtd" "virtualisation" "host" "nixbld"
+                    "environment" "program" ];
   };
 }
