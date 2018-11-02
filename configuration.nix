@@ -4,7 +4,7 @@
   boot = {
     kernelModules = [ "kvm-intel" "fuse" "reiser4" ];
     kernelPackages = pkgs.linuxPackages_latest;
-    supportedFilesystems = [ "ntfs-3g" "reiser4"];
+    supportedFilesystems = [ "ntfs-3g" "reiser4" ];
     loader = {
       #efi.efiSysMountPoint = "/boot/efi";
       grub = {
