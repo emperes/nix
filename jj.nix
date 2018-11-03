@@ -1,7 +1,7 @@
 { config, pkgs, ... }:
 {
   imports = [ ./hardware-configuration.nix ];
-  nixpkgs.overlays = [ 
+  nixpkgs.overlays = [ (self: super: {
     buildLinux = (cfg: super.buildLinux rec {
     version = "4.19";
     modDirVersion = "4.19.0";
