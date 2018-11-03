@@ -2,8 +2,9 @@
 {
   imports = [ ./hardware-configuration.nix ];
   boot = {
+    cleanTmpDir = true;
     kernelModules = [ "kvm-intel" "fuse" "reiser4" ];
-    kernelPackages = pkgs.linuxPackages_testing; #linuxPackages_latest_xen_dom0_hardened.nvidiabl
+    kernelPackages = pkgs.linuxPackages_latest;
     supportedFilesystems = [ "ntfs-3g" "reiser4" ];
     loader = {
       #efi.efiSysMountPoint = "/boot/efi";
@@ -148,5 +149,9 @@
                     "pulse" "video" "wheel" "vboxusers"
                     "libvirtd" "virtualisation" "host" "nixbld"
                     "environment" "program" ];
+  };
+  systemd.services = {
+    systemd-tmpfiles-setup.before = [ " sysinit.target " ];
+    systemd-update-utmp.after = [ " systemd-tmpfiles-setup.service " ];
   };
 }
