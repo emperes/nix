@@ -14,13 +14,7 @@
     src = pkgs.fetchurl {
       url = "https://cdn.kernel.org/pub/linux/kernel/v4.x/linux-4.18.tar.gz"
   # Use the GRUB 2 boot loader.
-  nixpkgs.config = {
-    packageOverrides = pkgs: {
-      stdenv = pkgs.stdenv // {
-        platform = pkgs.stdenv.platform // { kernelPatches = [ { patch=/home/obliq/reiser4-for-4.18.0.patch; name="reiser4"; } ];
-      };
-    };
-  };
+  nixpkgs.config = { packageOverrides = pkgs: { stdenv = pkgs.stdenv // { platform = pkgs.stdenv.platform // { kernelPatches = [ { patch=/home/obliq/reiser4-for-4.18.0.patch; name="reiser4"; } ]; };
   boot.loader.grub.enable = true;
   boot.loader.grub.version = 2;
   # boot.loader.grub.efiSupport = true;
