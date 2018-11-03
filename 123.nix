@@ -13,6 +13,8 @@
     version = "4.18";
     src = pkgs.fetchurl {
       url = "https://cdn.kernel.org/pub/linux/kernel/v4.x/linux-4.18.tar.gz"
+    };
+  };  
   # Use the GRUB 2 boot loader.
   nixpkgs.config.packageOverrides = pkgs: {
     reiser4 = pkgs.reiser4.override {
