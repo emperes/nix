@@ -104,8 +104,7 @@
                                             imagemagick speedcrunch links paprefs pasystray tor 
                                             torsocks torbrowser playonlinux wineFull winetricks
                                             audacity gnome3.gnome-sound-recorder gnome3.cheese 
-                                            skype plano-theme numix-gtk-theme
-                                            greybird faba-icon-theme numix-cursor-theme
+                                            skype numix-gtk-theme greybird numix-cursor-theme
                                             reiser4progs libaal aqemu ];
   #virtualboxWithExtpack linuxPackages.virtualboxGuestAdditions linuxPackages.virtualbox
   services.xserver.enable = true;
