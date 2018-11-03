@@ -4,7 +4,6 @@
   boot.loader.grub.enable = true;
   boot.loader.grub.version = 2;
   boot.loader.grub.device = "/dev/sda";
-  linuxPackages = #pkgs.linuxPackages_4_6;
   boot.kernelPackages = with pkgs.linuxPackages_custom.overrideDerivation (oldAttr: {
     version = "4.6.0-custom";
     src = pkgs.fetchurl {
