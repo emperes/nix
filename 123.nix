@@ -9,11 +9,9 @@
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
     ];
-  boot.kernelPackages  = pkgs.linuxPackages_custom {
+  boot.kernelPackages = pkgs.linuxPackages_custom {
     version = "4.18";
-    src = pkgs.fetchurl {
-      url = "https://cdn.kernel.org/pub/linux/kernel/v4.x/linux-4.18.tar.gz";
-    };
+    src = pkgs.fetchurl { url = "https://cdn.kernel.org/pub/linux/kernel/v4.x/linux-4.18.tar.gz"; };
   };  
   # Use the GRUB 2 boot loader.
   nixpkgs.config.packageOverrides = pkgs: {
@@ -23,15 +21,14 @@
       ];
     };
   };
-  boot.kernelModules = [ "reiser4" ];
-  boot.supportedFilesystems = [ "reiser4" ];
-  boot.loader.grub.enable = true;
-  boot.loader.grub.version = 2;
-  # boot.loader.grub.efiSupport = true;
-  # boot.loader.grub.efiInstallAsRemovable = true;
-  # boot.loader.efi.efiSysMountPoint = "/boot/efi";
-  # Define on which hard drive you want to install Grub.
-  boot.loader.grub.device = "/dev/sda"; # or "nodev" for efi only
+  boot
+    kernelModules = [ "reiser4" ];
+    supportedFilesystems = [ "reiser4" ];
+    loader.grub.enable = true;
+    loader.grub.version = 2;
+    loader.grub.device = "/dev/sda";
+    kernelPackages = pkgs.linuxPackages_custom { version = "4.18"; src = pkgs.fetchurl { url = "https://cdn.kernel.org/pub/linux/kernel/v4.x/linux-4.18.tar.gz"; };
+  };
 
   # networking.hostName = "nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
