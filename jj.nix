@@ -2,7 +2,6 @@
 {
   imports = [ ./hardware-configuration.nix ];
   nixpkgs.overlays = [ (self: super: {
-  let
     buildLinux = (cfg: super.buildLinux rec {
      version = "4.19";
      modDirVersion = "4.19.0";
