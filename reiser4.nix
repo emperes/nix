@@ -3,6 +3,7 @@
   imports = [ ./hardware-configuration.nix ];
   boot.loader.grub.enable = true;
   boot.loader.grub.version = 2;
+  boot.supportedFilesystems = [ "reiser4" ];
   boot.loader.grub.device = "/dev/sda";
   boot.kernelPackages = pkgs.linuxPackages_custom rec { 
     version = "4.18.0";
@@ -12,9 +13,10 @@
     };
     configfile = /etc/nixos/kernel.config;
   };
+  networking.wireless.enable = true;
   nixpkgs.config = {
     packageOverrides = pkgs: {
-      reiser4 = pkgs.stdenv // {
+      reiser4 = pkgs.resiser4 // {
         platform = pkgs.reiser4.platform // {
           kernelPatches = [ { patch=/home/obliq/reiser4-for-4.18.0.patch; name="reiser4"; }];
         };
