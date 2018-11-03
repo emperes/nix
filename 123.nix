@@ -12,7 +12,7 @@
   boot.kernelPackages  = pkgs.linuxPackages_custom {
     version = "4.18";
     src = pkgs.fetchurl {
-      url = "https://cdn.kernel.org/pub/linux/kernel/v4.x/linux-4.18.tar.gz"
+      url = "https://cdn.kernel.org/pub/linux/kernel/v4.x/linux-4.18.tar.gz";
     };
   };  
   # Use the GRUB 2 boot loader.
