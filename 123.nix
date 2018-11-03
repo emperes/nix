@@ -19,7 +19,7 @@
   nixpkgs.config.packageOverrides = pkgs: {
     reiser4 = pkgs.reiser4.override {
       kernelPatches = [
-        { patch=/home/obliq/reiser4-for-4.18.0.patch; name="reiser4";} 
+        { patch=/home/obliq/reiser4-for-4.18.0.patch; name="reiser4"; } 
       ];
     };
   };    
