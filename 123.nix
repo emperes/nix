@@ -1,8 +1,17 @@
 { config, pkgs, ... }:
 {
   imports = [ ./hardware-configuration.nix ];
-  nixpkgs.config.packageOverrides = pkgs: { reiser4 = pkgs.reiser4.override { kernelPatches = [ { patch=/home/obliq/reiser4-for-4.18.0.patch; name="reiser4"; }  ]; }; };
-  boot = { kernelModules = [ "reiser4" ]; supportedFilesystems = [ "reiser4" ]; loader.grub.enable = true; loader.grub.version = 2; loader.grub.device = "/dev/sda"; kernelPackages = pkgs.linuxPackages_custom { version = "4.18"; src = pkgs.fetchurl { url = "https://cdn.kernel.org/pub/linux/kernel/v4.x/linux-4.18.tar.gz"; }; };
-  environment.systemPackages = with pkgs; [ reiser4prog libaal ];
-  system.stateVersion = "18.09"; # Did you read the comment?
+  boot.loader.grub.enable = true;
+  boot.loader.grub.version = 2;
+  boot.loader.grub.device = "/dev/sda";
+  linuxPackages = #pkgs.linuxPackages_4_6;
+  boot.kernelPackages = with pkgs.linuxPackages_custom.overrideDerivation (oldAttr: {
+    version = "4.6.0-custom";
+    src = pkgs.fetchurl {
+      url = "mirror://kernel/linux/kernel/v4.x/linux-4.6.tar.xz";
+      sha256 = "0rnq4lnz1qsx86msd9pj5cx8v97yim9l14ifyac7gllabb6p2dx9";
+    };  
+  };
+  environment.systemPackages = with pkgs; [ libaal reiser4progs ];
+  system.stateVersion = "18.09";
 }
