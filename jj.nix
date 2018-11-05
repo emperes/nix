@@ -10,16 +10,16 @@
   nixpkgs.config = { allowBroken = true; allowUnfree = true; };
   boot.kernelPatches = [ 
     { name = "reiser4";
-    patch = ./reiser4-for-4.18.9.patch; }
+      patch = ./reiser4-for-4.18.9.patch; }
     { name = "uksm";
-    patch = ./uksm-4.18.patch; }
+      patch = ./uksm-4.18.patch; }
     { name = "muqss";
-    patch = ./0001-MultiQueue-Skiplist-Scheduler-version-v0.173.patch; }
-    extraConfig = ''
-      REISER4_FS y
-      REISER4_DEBUG y
-      #UKSM y
-      #SCHED_MUQSS y
+      patch = ./0001-MultiQueue-Skiplist-Scheduler-version-v0.173.patch; }
+      extraConfig = ''
+        REISER4_FS y
+        REISER4_DEBUG y
+        #UKSM y
+        #SCHED_MUQSS y
     '';
   } ];
   hardware = {
