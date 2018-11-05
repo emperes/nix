@@ -14,8 +14,8 @@
     { name = "uksm";
       patch = ./uksm-4.18.patch; }
     { name = "muqss";
-      patch = ./0001-MultiQueue-Skiplist-Scheduler-version-v0.173.patch; }
-    extraConfig = ''
+      patch = ./0001-MultiQueue-Skiplist-Scheduler-version-v0.173.patch;
+      extraConfig = ''
         REISER4_FS y
         REISER4_DEBUG y
         #UKSM y
