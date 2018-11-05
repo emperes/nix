@@ -18,8 +18,8 @@
       extraConfig = ''
         REISER4_FS y
         REISER4_DEBUG y
-        #UKSM y
-        #SCHED_MUQSS y
+#       UKSM y
+#       SCHED_MUQSS y
     '';
   } ];
   hardware = {
