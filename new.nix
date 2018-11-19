@@ -125,4 +125,5 @@
                     "libvirtd" "docker" "virtualisation" ]; };
   systemd.services = {
     systemd-tmpfiles-setup.before = [ " sysinit.target " ];
-    systemd-update-utmp.after = [ " systemd-tmpfiles-setup.service " ]; };                                            
+    systemd-update-utmp.after = [ " systemd-tmpfiles-setup.service " ]; };
+}    
