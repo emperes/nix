@@ -1,6 +1,6 @@
 { config, pkgs, ... }:
 {
-  imports = [ ./ ]
+  imports = [ ]
   boot = {
     cleanTmpDir = true;
     kernelModules = [ "kvm-intel" "fuse" ];
