@@ -1,6 +1,6 @@
 { config, pkgs, ... }:
 {
-  imports = [ ]
+  imports = [ ./hardware-configuration.nix ];
   boot = {
     cleanTmpDir = true;
     kernelModules = [ "kvm-intel" "fuse" ];
@@ -14,5 +14,7 @@
         #useOSProber = true;
         enable = true;
         version = 2;
-        device = "/dev/sda"; }; }; };
-}
+        device = "/dev/sda";
+      };  
+    };
+  };
