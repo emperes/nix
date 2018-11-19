@@ -60,7 +60,7 @@
     firefox vlc neofetch wget python3Full unar
     djview xpdf rsync ffmpeg-full python37Full
     chromium pavucontrol geany aqemu pinentry
-    ripgrep scripts global coreutils
+    ripgrep global coreutils
     direnv emacs fasd fzf
     fuse appimage-run libreoffice-fresh vscode
     bison flex openssl curl apulse pamixer pamix
@@ -80,8 +80,8 @@
     haskellPackages.xmonad-extras
     haskellPackages.yeganesh
     iw keybase keybase-gui libnotify
-    lightum powertop rofi rofi-emoji
-    rofi-pass rofi-wifi-menu scrot
+    lightum powertop rofi rofi-menugen
+    rofi-pass scrot rofi-systemd
     stalonetray unclutter-xfixes
     wirelesstools xclip xsel
     xorg.libXrandr xorg.xbacklight
@@ -92,7 +92,7 @@
     chunkwm.core
     chunkwm.ffm
     chunkwm.tiling skhd
-    DashDocker
+    Dash Docker
   ]);
   virtualisation = { docker.enable = true; virtualbox.host.enable = true; libvirtd.enable = true; };
   services.xserver.enable = true;
@@ -121,9 +121,7 @@
   services.dbus = { enable = true; packages = with pkgs; [ gnome2.GConf ]; };
   services.cron.enable = true;
   services.locate.enable = true;
-  services.dunst.enable = true;
   services.autorandr.enable = true;
-  keyservices.autocutsel.enable = true;
   services.udisks2.enable = true;
   services.keybase.enable = true;
   services.kbfs = { enable = true; mountPoint = "/keybase"; };
@@ -178,4 +176,4 @@
   systemd.services = {
     systemd-tmpfiles-setup.before = [ " sysinit.target " ];
     systemd-update-utmp.after = [ " systemd-tmpfiles-setup.service " ]; };
-}    
+}
