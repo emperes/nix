@@ -14,8 +14,5 @@
         #useOSProber = true;
         enable = true;
         version = 2;
-        device = "/dev/sda";
-      };  
-    };
-  };
+        device = "/dev/sda"; }; }; };
 }  
