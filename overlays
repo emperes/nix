@@ -1,0 +1,80 @@
+# confiration nix:
+# указать оверлеи
+nixpkgs.overlays = [ (import ./overlay.nix) ];
+
+
+# overlay.nix:
+# какая-то странная рекурсия. super в данном файле будет указывать на pkgs (все обычные пакеты, функции и т.д.). все новые переменные заданные в этом модуле окажутся в self, который потом смержится, как я понимаю, с pkgs. 
+# стоит обратить внимание на последнюю строчку, self.unstable...: unstable задан в этом модуле и вызывается он из self.
+self: super: {
+
+  # импоритировать unstable канал в переменную
+  # подключить канала можно через команду nix-channel (менять каналы от рута, не от юзера)
+  unstable = import <nixos-unstable> {
+    # задать конфиг для этого канала, аналогично тому, как это делается в текущем канале
+    config.allowUnfree = true;
+  };
+
+  # вызвать пакет, pkgs/xfsdump — директория
+  xfsdump = super.callPackage ./pkgs/xfsdump {};
+
+  # аналогично
+  qemu = super.callPackage ./pkgs/qemu {};
+
+  # перезаписать пакет zabbix.agent на версию импортированную из unstable
+  zabbix.agent = self.unstable.zabbix34.agent;
+
+}
+
+# pkgs/xfsdump/default.nix
+# пример пакета:
+# тут много говна и костылей из-за странной полудохлой системы сборки проекта, но оно работает
+# обычно же в nix сборка пакетов более простая
+{ stdenv, fetchurl, attr, bash, gettext, libuuid, libxfs, ncurses }:
+
+stdenv.mkDerivation rec {
+  name = "xfsdump-${version}";
+  version = "3.1.8";
+
+  src = fetchurl {
+    url = "https://mirrors.edge.kernel.org/pub/linux/utils/fs/xfs/xfsdump/${name}.tar.xz";
+    sha256 = "11f5xph0w4cvmzm3zq8gahg3cg83dyj46yvnirlw4wxjwmxfc57d";
+  };
+
+  buildInputs = [
+  attr
+  gettext
+  libuuid
+  libxfs
+  ncurses
+  ];
+
+  configureFlags = [
+    "AWK=awk"
+    "MAKE=make"
+    "MSGFMT=msgfmt"
+    "MSGMERGE=msgmerge"
+    "SED=sed"
+    "XGETTEXT=xgettext"
+  ];
+
+  preInstall = ''
+    for i in include/install-sh install-sh; do
+      sed -i $i -e 's|/bin/bash|${bash}/bin/bash|'
+    done
+
+    # hack: cant install binaries by using make install
+    mkdir -p $out/bin
+    for i in dump restore invutil; do
+      cp $i/xfs$i $out/bin
+    done
+  '';
+
+  installTargets = "man-install";
+
+  meta = with stdenv.lib; {
+    homepage = "https://git.kernel.org/pub/scm/fs/xfs/xfsdump-dev.git";
+    description = "XFS filesystem incremental dump/restore utility";
+    platforms = platforms.linux;
+  };
+} 
