@@ -22,23 +22,24 @@
       support32Bit = true;
       systemWide = true; }; };
     
-  services.xserver.libinput.enable = true;
-  services.xserver.synaptics = { 
-    enable = false;
-    accelFactor = "0.0350939";
-    vertEdgeScroll = false;
-    horizEdgeScroll = false;
-    additionalOptions = ''
-	       Option "LTCornerButton" "2"
-	       Option "RTCornerButton" "3"
-	       Option "TapAndDragGesture" "1"
-	       Option "CircularScrolling" "1"
-	       Option "CircScrollTrigger" "3"
-	       Option "CircScrollDelta" "0.100007" ''; };
-  
-  services.actkbd.enable = true;
-  services.xserver.videoDrivers = [ "intel" ];
-  
+  services = {
+    actkbd.enable = true;
+    xserver = { 
+      videoDrivers = [ "intel" ];
+      libinput.enable = true;
+      synaptics = { 
+        enable = false;
+        accelFactor = "0.0350939";
+        vertEdgeScroll = false;
+        horizEdgeScroll = false;
+        additionalOptions = ''
+   	           Option "LTCornerButton" "2"
+	           Option "RTCornerButton" "3"
+	           Option "TapAndDragGesture" "1"
+	           Option "CircularScrolling" "1"
+	           Option "CircScrollTrigger" "3"
+	           Option "CircScrollDelta" "0.100007" ''; }; }; };
+
   sound = { enable = true; mediaKeys.enable = true; };
   
   powerManagement.cpuFreqGovernor = "performance";
