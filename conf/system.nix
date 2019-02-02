@@ -13,4 +13,9 @@
     udisks2.enable = true;
     ntp.enable = true;
     tor.enable = true; };
+    
+  systemd = {
+    services = {
+      systemd-tmpfiles-setup.before = [ " sysinit.target " ];
+      systemd-update-utmp.after = [ " systemd-tmpfiles-setup.service " ]; }; };
 }
