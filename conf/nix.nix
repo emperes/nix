@@ -6,9 +6,10 @@
      useSandbox = true;
      binaryCaches = [ "https://cache.nixos.org/" "https://ollerus.cachix.org" ];
      binaryCachePublicKeys = [ "emperes.cachix.org-1:NsQvrJD2N3fR2501w6cEESFkUQbOjzpmpsX5tC/s+sI=" ];
-     trustedUsers = [ "obliq" "root" ];
-     }; 
+     trustedUsers = [ "obliq" "root" ]; };
+     
    nixpkgs.config = { allowBroken = true; allowUnfree = true; allowUnsupportedSystem = false; };
+   
    system = { 
     autoUpgrade.enable = true;
     stateVersion = "unstable";
