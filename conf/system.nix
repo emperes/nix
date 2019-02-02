@@ -3,8 +3,8 @@
   services = {
     acpid.enable = true;
     thermald.enable = true;
-    tlp.enable = true;
-    illum.enable = true;
+    tlp.enable = false;
+    illum.enable = false;
     services.openssh.enable = true;
     dbus = { enable = true; packages = with pkgs; [ gnome2.GConf ]; };
     cron.enable = true;
