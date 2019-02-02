@@ -12,6 +12,7 @@
                          
     enableDefaultFonts = true;
     enableGhostscriptFonts = true;
+    enableFontDir = true;
     
     fontconfig.defaultFonts = {
       monospace = [ "Noto Mono" ];
