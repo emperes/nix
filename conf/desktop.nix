@@ -5,5 +5,5 @@
     xserver = {
       enable = true;
       displayManager.auto = { enable = true; user = "obliq"; };
-      desktopManager = { xfce.enable = true; default = "xfce"; };
+      desktopManager = { xfce.enable = true; default = "xfce"; }; }; };
 }
