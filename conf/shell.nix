@@ -15,11 +15,11 @@
          enable = true;
          theme = "ys";
          plugins = [ "git" "tmux" "sudo" "systemd" "jira"
-                     "httpie" "rsync" "git-extras"
-                     "common-aliases" pip python vscode ]; }; }; };
+                     "httpie" "rsync" "git-extras" "vscode"
+                     "common-aliases" "pip" "python" ]; }; }; };
                     
     environment.shellAliases = {
-     ns = "nix-shell --command zsh";
+     apt = "nix-env";
      "XD" = ''echo "emperes"'';
      nixi = ''nix repl "<nixpkgs>"''; };
 }
