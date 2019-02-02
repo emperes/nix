@@ -5,7 +5,7 @@
     cleanTmpDir = true;
     kernelModules = [ "kvm-intel" "fuse" ];
     kernelPackages = pkgs.linuxPackages_latest;
-    supportedFilesystems = [ "ntfs-3g" ];
+    supportedFilesystems = [ "ntfs-3g" ]; # "zfs" "reiser4" "spadfs"
     loader = { systemd-boot.enable = true; efi.canTouchEfiVariables = true; };
       #efi.efiSysMountPoint = "/boot/efi";
       #grub = {
