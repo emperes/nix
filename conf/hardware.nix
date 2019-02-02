@@ -2,10 +2,11 @@
 {
   hardware = {
     bluetooth.enable = false;
+    
     enableRedistributableFirmware = true;
-    cpu.intel.updateMicrocode = true;
-    cpu.amd.updateMicrocode = false;
     enableAllFirmware = true;
+    
+    cpu = { intel.updateMicrocode = true; amd.updateMicrocode = false; };
     
     opengl = {
       enable = true;
