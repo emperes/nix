@@ -33,8 +33,7 @@
 	       Option "TapAndDragGesture" "1"
 	       Option "CircularScrolling" "1"
 	       Option "CircScrollTrigger" "3"
-	       Option "CircScrollDelta" "0.100007"
-  ''; };
+	       Option "CircScrollDelta" "0.100007" ''; };
   
   services.actkbd.enable = true;
   services.xserver.videoDrivers = [ "intel" ];
