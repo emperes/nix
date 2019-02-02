@@ -6,12 +6,15 @@
     cpu.intel.updateMicrocode = true;
     cpu.amd.updateMicrocode = false;
     enableAllFirmware = true;
-    opengl.enable = true;
-    opengl.driSupport = true;
-    opengl.driSupport32Bit = true;
-    opengl.extraPackages = with pkgs; [ vaapiIntel libvdpau-va-gl vaapiVdpau ];
-    opengl.extraPackages32 = with pkgs.pkgsi686Linux; [ vaapiIntel libvdpau-va-gl vaapiVdpau ];
-    opengl.s3tcSupport = true;
+    
+    opengl = {
+      enable = true;
+      driSupport = true;
+      driSupport32Bit = true;
+      extraPackages = with pkgs; [ vaapiIntel libvdpau-va-gl vaapiVdpau ];
+      extraPackages32 = with pkgs.pkgsi686Linux; [ vaapiIntel libvdpau-va-gl vaapiVdpau ];
+      s3tcSupport = true; };
+      
     pulseaudio = {
       enable = true;
       package = pkgs.pulseaudioFull;
@@ -35,7 +38,10 @@
   
   services.actkbd.enable = true;
   services.xserver.videoDrivers = [ "intel" ];
+  
   sound = { enable = true; mediaKeys.enable = true; };
+  
   powerManagement.cpuFreqGovernor = "performance";
+  
   zramSwap = { enable = true; memoryPercent = 40; };
 }
