@@ -3,9 +3,9 @@
    boot = {
     blacklistedKernelModules = [ "snd_pcsp" "pcspkr" ];
     cleanTmpDir = true;
-    kernelModules = [ "kvm-intel" "fuse" ]; #"reiser4" "spadfs" 
+    kernelModules = [ "kvm-intel" "fuse" ];
     kernelPackages = pkgs.linuxPackages_latest;
-    supportedFilesystems = [ "ntfs-3g" ]; #"reiser4" "spadfs" 
+    supportedFilesystems = [ "ntfs-3g" ];
     loader = { systemd-boot.enable = true; efi.canTouchEfiVariables = true; };
       #efi.efiSysMountPoint = "/boot/efi";
       #grub = {
