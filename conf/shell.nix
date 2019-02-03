@@ -1,21 +1,25 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 {
-  services = {
-    acpid.enable = true;
-    thermald.enable = true;
-    tlp.enable = false;
-    illum.enable = false;
-    openssh.enable = true;
-    dbus = { enable = true; packages = with pkgs; [ gnome2.GConf ]; };
-    cron.enable = true;
-    locate.enable = true;
-    autorandr.enable = true;
-    udisks2.enable = true;
-    ntp.enable = true;
-    tor.enable = true; };
-    
-  systemd = {
-    services = {
-      systemd-tmpfiles-setup.before = [ " sysinit.target " ];
-      systemd-update-utmp.after = [ " systemd-tmpfiles-setup.service " ]; }; };
+   programs = {
+     bash = { enableCompletion = true; };
+     zsh = {
+       enable = true;
+       enableCompletion = true;
+       autosuggestions.enable = true;
+       syntaxHighlighting.enable = true;
+       syntaxHighlighting.highlighters = [ "main" "brackets" "pattern" "cursor" "root" "line" ];
+       interactiveShellInit = ''ZSH_TMUX_AUTOSTART=true
+                                ZSH_TMUX_AUTOQUIT=true
+                                ENABLE_CORRECTION="true"'';
+       ohMyZsh = {
+         enable = true;
+         theme = "ys";
+         plugins = [ "git" "tmux" "sudo" "systemd" "jira"
+                     "httpie" "rsync" "git-extras" "vscode"
+                     "common-aliases" "pip" "python" ]; }; }; };
+                    
+    environment.shellAliases = {
+     qwe = "nix-env";
+     "XD" = ''echo "emperes"'';
+     nixi = ''nix repl "<nixpkgs>"''; };
 }
