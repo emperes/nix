@@ -1,3 +1,22 @@
+http://sandervanderburg.blogspot.com/2014/07/managing-private-nix-packages-outside.html
+{ stdenv, fetchFromGitHub, libX11,
+libXinerama, libXrandr, libXft,
+freetype, libXpm, imlib2, fontconfig,
+pkgconfig }:
+
+with import <nixpkgs> {};
+
+stdenv.mkDerivation rec {
+  name = "wmfs";
+  src = fetchFromGitHub {
+      owner = "xorg62";
+      repo = "wmfs";
+      rev = "b7b8ff812d28c79cb22a73db2739989996fdc6c2";
+      sha256 = "e8af541bf7b10d6bb12952cb5782b22f2f4350d1d4154df54761e201b6cc1be0"; };
+
+  nativeBuildInputs = [ pkgconfig ];
+  buildInputs = [ libX11 libXinerama imlib2 ]; }
+
 { config, pkgs, ... }:
 { imports = [ ./hardware-configuration.nix ];
   boot.loader.grub.enable = true;
