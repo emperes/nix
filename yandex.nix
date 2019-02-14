@@ -1,38 +1,37 @@
-{ alsaLib
-, atk
-, cairo
-, cups
-, curl
-, dbus
-, dpkg
-, expat
-, fetchurl
-, fontconfig
-, freetype
-, gdk_pixbuf
-, glib
-, gnome2
-, gtk3
-, libX11
-, libxcb
-, libXScrnSaver
-, libXcomposite
-, libXcursor
-, libXdamage
-, libXext
-, libXfixes
-, libXi
-, libXrandr
-, libXrender
-, libXtst
-, libnotify
-, libpulseaudio
-, nspr
-, nss
-, pango
-, stdenv
+{ stdenv, patchelf, makeWrapper
+
+# Linked dynamic libraries.
+, glib, fontconfig, freetype, pango, cairo, libX11, libXi, atk, gconf, nss, nspr
+, libXcursor, libXext, libXfixes, libXrender, libXScrnSaver, libXcomposite, libxkbfile, libxcb
+, alsaLib, libXdamage, libXtst, libXrandr, expat, cups
+, dbus, gtk2, gtk3, gdk_pixbuf, gcc-unwrapped, at-spi2-atk
+, kerberos
+
+# command line arguments which are always set e.g "--disable-gpu"
+, commandLineArgs ? ""
+
+# Will crash without.
 , systemd
-, at-spi2-atk
+
+# Loaded at runtime.
+, libexif
+
+# Additional dependencies according to other distros.
+## Ubuntu
+, liberation_ttf, curl, utillinux, xdg_utils, wget
+## Arch Linux.
+, flac, harfbuzz, icu, libpng, libopus, snappy, speechd
+## Gentoo
+, bzip2, libcap
+
+# Which distribution channel to use.
+, channel ? "unstable"
+
+# Necessary for USB audio devices.
+, pulseSupport ? true, libpulseaudio ? null
+
+, gsettings-desktop-schemas
+, gnome2, gnome3
 }:
 
 let
@@ -40,51 +39,21 @@ let
   mirror = https://repo.yandex.ru/yandex-browser/deb/pool/main/y/yandex-browser-beta;
   version = "19.1.0.2494-1";
 
-  rpath = stdenv.lib.makeLibraryPath [
+deps = [
+    glib fontconfig freetype pango cairo libX11 libXi atk gconf nss nspr
+    libXcursor libXext libXfixes libXrender libXScrnSaver libXcomposite libxkbfile libxcb
+    alsaLib libXdamage libXtst libXrandr expat cups
+    dbus gdk_pixbuf gcc-unwrapped.lib
+    systemd
+    libexif
+    liberation_ttf curl utillinux xdg_utils wget
+    flac harfbuzz icu libpng opusWithCustomModes snappy speechd
+    bzip2 libcap at-spi2-atk
+    kerberos
+  ] ++ optional pulseSupport libpulseaudio
+    ++ [ gtk ];
 
-    # These provide shared libraries loaded when starting. If one is missing,
-    # an error is shown in stderr.
-    alsaLib.out
-    atk.out
-    cairo.out
-    cups
-    curl.out
-    dbus.lib
-    expat.out
-    fontconfig.lib
-    freetype.out
-    gdk_pixbuf.out
-    glib.out
-    gnome2.GConf
-    gtk3.out
-    libX11.out
-    libXScrnSaver.out
-    libXcomposite.out
-    libXcursor.out
-    libXdamage.out
-    libXext.out
-    libXfixes.out
-    libXi.out
-    libXrandr.out
-    libXrender.out
-    libXtst.out
-    libxcb.out
-    libnotify.out
-    nspr.out
-    nss.out
-    pango.out
-    stdenv.cc.cc.lib
-
-    # This is a little tricky. Without it the app starts then crashes. Then it
-    # brings up the crash report, which also crashes. `strace -f` hints at a
-    # missing libudev.so.0.
-    systemd.lib
-
-    # Works fine without this except there is no sound.
-    libpulseaudio.out
-
-    at-spi2-atk
-  ];
+  suffix = if channel != "unstable" then "-" + channel else "";
 
 in stdenv.mkDerivation {
 
@@ -100,7 +69,7 @@ in stdenv.mkDerivation {
   installPhase = ''
     mkdir --parent $out
     mv * $out/
-    mv $out/lib/*/opera/*.so $out/lib/
+    mv $out/opt/*/browser-beta/lib/*.so $out/lib/
   '';
 
   postFixup = ''
@@ -115,7 +84,7 @@ in stdenv.mkDerivation {
   '';
 
   meta = {
-    homepage = http://www.opera.com;
+    homepage = http://www.yandex.ru;
     description = "Web browser";
     platforms = [ "x86_64-linux" ];
     license = stdenv.lib.licenses.unfree;
